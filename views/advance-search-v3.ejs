@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uniland - Real Estate HTML5 Template">
+    <meta name="keywords" content="real estate, property, property search, agent, apartments, booking, business, idx, housing, real estate agency, rental">
+    <meta name="author" content="unicoder">
+    <title>Uniland - Real Estate HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon2.ico">
+
+    <!-- Google Font -->	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/layerslider.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/control.css">
+
+</head>
+<body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div id="page_wrapper" class="bg-light-gray">
+        <!--============== Page Banner Section Start ==============-->
+        <div class="full-row inner-page-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="page-title-wrapper d-lg-flex flex-column gap-3">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0 bg-transparent p-0">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Listing</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Advance Search</li>
+                                </ol>
+                            </nav>
+                            <h1 class="page-title">Advance Search Filter</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--============== Page Banner Section End ==============-->
+
+        <!--================ Advance Filter Start =================-->
+        <div class="secondary-nav-leftside nav-leftpush-overlay">
+            <div class="navbar-expand-lg">
+                <div class="navbar-slide-push">
+                    <span class="slide-nav-close color-dark font-primary ls-2 fw-semibold"><i class="fa-solid fa-xmark"></i> Hide Filter</span>
+                    <form action="#" method="POST" class="quick-search slide-filter form-icon-right position-relative pb-5 p-0">
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Location</h6>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" name="location" placeholder="Location">
+                                    <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Property Type</h6>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <ul class="select-custom">
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-0" hidden="">
+                                        <label for="property-type-0" class="select-btn">Any Type</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-1" hidden="">
+                                        <label for="property-type-1" class="select-btn">House</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-2" hidden="">
+                                        <label for="property-type-2" class="select-btn">Office</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-3" hidden="">
+                                        <label for="property-type-3" class="select-btn">Appartment</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-4" hidden="">
+                                        <label for="property-type-4" class="select-btn">Condos</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-5" hidden="">
+                                        <label for="property-type-5" class="select-btn">Villa</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-6" hidden="">
+                                        <label for="property-type-6" class="select-btn">Family</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-type" id="property-type-7" hidden="">
+                                        <label for="property-type-7" class="select-btn">Single Room</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Property Status</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <ul class="select-custom">
+                                    <li>
+                                        <input type="radio" name="property-status" id="property-type-8" hidden="">
+                                        <label for="property-type-8" class="select-btn">Any Status</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-status" id="property-type-9" hidden="">
+                                        <label for="property-type-9" class="select-btn">For Sale</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="property-status" id="property-type-10" hidden="">
+                                        <label for="property-type-10" class="select-btn">For Rent</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Property Pricing</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="row row-cols-2 g-1">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="min-price" placeholder="Min Price">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="max-price" placeholder="Max Price">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Bedrooms</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <ul class="select-custom">
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-11" hidden="">
+                                        <label for="property-type-11" class="select-btn">One</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-12" hidden="">
+                                        <label for="property-type-12" class="select-btn">Two</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-13" hidden="">
+                                        <label for="property-type-13" class="select-btn">Three</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-14" hidden="">
+                                        <label for="property-type-14" class="select-btn">Four</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-15" hidden="">
+                                        <label for="property-type-15" class="select-btn">Five</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bed-rooms" id="property-type-16" hidden="">
+                                        <label for="property-type-16" class="select-btn">Six</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Bathrooms</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <ul class="select-custom">
+                                    <li>
+                                        <input type="radio" name="bath-rooms" id="property-type-17" hidden="">
+                                        <label for="property-type-17" class="select-btn">One</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bath-rooms" id="property-type-18" hidden="">
+                                        <label for="property-type-18" class="select-btn">Two</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bath-rooms" id="property-type-19" hidden="">
+                                        <label for="property-type-19" class="select-btn">Three</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="bath-rooms" id="property-type-20" hidden="">
+                                        <label for="property-type-20" class="select-btn">Four</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Ares Squire Feet</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <ul class="select-custom">
+                                    <li>
+                                        <input type="radio" name="area-sqft" id="property-type-21" hidden="">
+                                        <label for="property-type-21" class="select-btn">0-1000 sqft</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="area-sqft" id="property-type-22" hidden="">
+                                        <label for="property-type-22" class="select-btn">1001-3000 sqft</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="area-sqft" id="property-type-23" hidden="">
+                                        <label for="property-type-23" class="select-btn">3001-5000 sqft</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="area-sqft" id="property-type-24" hidden="">
+                                        <label for="property-type-24" class="select-btn">5001-8000 sqft+</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <h6 class="color-dark fs-6 text-uppercase ls-2 fw-semibold">Aditional Options</h6>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <ul class="row row-cols-1 custom-check-box mb-20">
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Air Conditioning</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck2">
+                                        <label class="custom-control-label" for="customCheck2">Garage Facility</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck3">
+                                        <label class="custom-control-label" for="customCheck3">Swiming Pool</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck4">
+                                        <label class="custom-control-label" for="customCheck4">Fire Security</label>
+                                    </li>
+
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck5">
+                                        <label class="custom-control-label" for="customCheck5">Fire Place Facility</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck6">
+                                        <label class="custom-control-label" for="customCheck6">Play Ground</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck7">
+                                        <label class="custom-control-label" for="customCheck7">Ferniture Include</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck8">
+                                        <label class="custom-control-label" for="customCheck8">Marbel Floor</label>
+                                    </li>
+
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck9">
+                                        <label class="custom-control-label" for="customCheck9">Store Room</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck10">
+                                        <label class="custom-control-label" for="customCheck10">Hight Class Door</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck11">
+                                        <label class="custom-control-label" for="customCheck11">Floor Heating System</label>
+                                    </li>
+                                    <li class="col">
+                                        <input type="checkbox" class="custom-control-input hide" id="customCheck12">
+                                        <label class="custom-control-label" for="customCheck12">Garden Include</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100" type="button" name="search">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--================= Advance Filter End ==================-->
+
+
+        <!--=============== Start Listing ====================-->
+        <div class="full-row pt-0">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col">
+                                <div class="listing-filter-bar">
+                                    <div class="btn hover-color-white push-nav-toggle"><i class="fa-solid fa-bars"></i></div>
+                                    <div class="result-wrapper">
+                                        <span class="ordering-pages">Showing at 10 result out of 2381</span>
+                                    </div>
+                                    <div class="short-by-wrapper">
+                                        <form class="listing-ordering" method="get">
+                                            <label>Short By:</label>
+                                            <select name="orderby2" class="makeMeList">
+                                                <option value="defaut">Default Order</option>
+                                                <option value="most_popular">Most Popular</option>
+                                                <option value="top_rated">Top Rated</option>
+                                                <option value="newest_items">Newest Items</option>
+                                                <option value="price_low_to_high">Price low to high</option>
+                                                <option value="price_hight_to_low">Price hight to low</option>
+                                            </select>
+                                        </form>
+                                        <form class="view-style" method="get">
+                                            <button title="Grid" class="grid-view current" value="grid" name="display" type="submit"><i class="fa-solid fa-list"></i></button>
+                                            <button title="List" class="list-view" value="list" name="display" type="submit"><i class="fa-solid fa-table-cells-large"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-3">
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-2.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$1850<small> / Monthly</small></span>
+                                            <div class="type"><span class="sale text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-1.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$6500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-3.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Villa</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 22, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$10500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-4.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condo</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">New Condo For Rent</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$2500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-5.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-6.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$10500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-7.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condo</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">New Condo For Rent</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$2500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-8.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-2.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$1850<small> / Monthly</small></span>
+                                            <div class="type"><span class="sale text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-1.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-2.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$1850<small> / Monthly</small></span>
+                                            <div class="type"><span class="sale text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Add Compare"><i class="fa-solid fa-shuffle"></i></a></li>
+                                                <li><a href="#" title="Add Favourite"><i class="fa-regular fa-heart"></i></a></li>
+                                                <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-1.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                            <div class="entry-footer">
+                                                <div class="entry-author">
+                                                    <div class="property-author">
+                                                        <a href="#"><img src="assets/images/team/1.jpg" alt="professional real estate"> <span>Ali Tufan</span></a>
+                                                    </div>
+                                                    <div class="message-author"><a href="#"><i class="fa-brands fa-whatsapp"></i> Chat Now</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1">
+                            <div class="pagination-wrap">
+                                <nav>
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled"><a class="page-link" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only"></span></a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== End Listing =====================-->
+
+        <!--============== Copyright Section Start ==============-->
+        <div class="copyright font-primary py-3">
+            <div class="container">
+                <div class="row row-cols-md-2 row-cols-1">
+                    <div class="col">
+                        <p class="color-white mb-0">©2023 Uniland All right reserved</p>
+                    </div>
+                    <div class="col">
+                        <ul class="bottom-footer-nav list-color-gray">
+                            <li><a href="#">Privacy & Policy </a></li>
+                            <li>|</li>
+                            <li><a href="#">Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--============== Copyright Section End ==============-->
+
+    </div>
+
+
+    <!--============== Modal Start ==============-->
+    <div class="overlay-dark modal fade quick-view-modal" id="quick-view">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="close view-close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+                <div class="modal-body property-block summary p-3">
+                    <div class="row row-cols-xl-2 row-cols-1">
+                        <div class="col">
+                            <div class="entry-thumbnail bg-secondary hover-img-zoom m-2">
+                                <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                <a href="#"><img class="w-100" src="assets/images/property/2.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="entry-content-wrapper">
+                                <div class="property-type"><a href="#">Condos</a></div>
+                                <h5 class="entry-title mb-1" id="staticBackdropLabel"><a href="#">Luxury Condos Infront of the street of Green Park</a></h5>
+                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                <span class="d-block color-dark hover-text-primary primary-font fs-7 mb-2">( 100 People Recommended )</span>
+                                <div class="d-flex align-items-center">
+                                    <span class="color-primary font-primary fw-semibold fs-3">$5600 - $8300/<small>mo</small></span>
+                                    <span class="product-status ms-4 my-1"><i class="fas fa-check"></i> Available</span>
+                                </div>
+                                <div class="product-offers mt-3">
+                                    <ul class="product-offers-list">
+                                        <li class="product-offer-item"> <strong>Special Price </strong>Get extra 19% off (price inclusive of discount)</li>
+                                        <li class="product-offer-item"> <strong>Bank Offer </strong> 10% instant discount on VISA Cards</li>
+                                        <li class="product-offer-item"> <strong>No cost EMI $49/month.</strong> Standard EMI also available</li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="quantity">
+                                    <ul class="d-flex gap-2">
+                                        <li><span>Rooms:</span> 5</li>
+                                        <li><span>Beds:</span> 3</li>
+                                        <li><span>Bathrooms:</span> 2</li>
+                                        <li><span>Garage:</span> 1</li>
+                                        <li><span>Area:</span> 1100 Sqft</li>
+                                    </ul>
+                                </div>
+                                <h5 class="text-secondary my-3">Description</h5>
+                                <p>Bibendum purus aenean mus aenean eu interdum nonummy ipsum ad consequat. Dui eros donec faucibus convallis tempus rutrum id donec mus hymenaeos placerat congue curae mauris turpis gravida viverra consequat consequat
+                                    gravida luctus.</p>
+                                <div class="short-description d-flex">
+                                    <span class="me-4"><b>Highlights:</b></span>
+                                    <div class="short-description">
+                                        <ul class="list-style d-flex flex-column">
+                                            <li>Regular Fit.</li>
+                                            <li>Full sleeves.</li>
+                                            <li>Machine wash, tumble dry.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============== Modal End ==============-->
+
+    <!-- Login Modal -->
+    <div class="modal fade login-modal" id="loginmodal" tabindex="-1" aria-labelledby="loginmodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="exampleModalLabel">User Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body user-login-form">
+                    <form action="#" method="post">
+                        <div class="row row-cols-1 g-3">
+                            <div class="col">
+                                <label class="access-field"><i class="fa-solid fa-user"></i> <input type="email" class="form-control" placeholder="Username/Email" value="" required=""></label>
+                            </div>
+                            <div class="col">
+                                <label class="access-field"><i class="fa-solid fa-lock"></i> <input type="password" class="form-control" placeholder="Password" value="" required=""></label>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex justify-content-between">
+                                    <label><input type="checkbox" name="remember" value=""> Remember me</label>
+                                    <span><a href="#">Forgot Password</a></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary hover-flash-move w-100">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-start">
+                    <a href="signup.html" class="text-dark d-table font-primary fw-medium ls-1 hover-color-primary"><u>Don't Have Account? Click Here.</u></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login Modal End -->
+
+    <!-- Scroll to top -->
+    <div class="scroll-top-vertical xs-mx-none" id="scroll">Back to top <i class="ms-2 fa-solid fa-arrow-right-long"></i></div>
+
+
+    <!-- Javascript Files -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/mixitup.min.js"></script>
+    <script src="assets/js/range/tmpl.js"></script>
+    <script src="assets/js/range/jquery.dependClass.js"></script>
+    <script src="assets/js/range/draggable.js"></script>
+    <script src="assets/js/range/jquery.slider.js"></script>
+    <script src="assets/js/paraxify.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>

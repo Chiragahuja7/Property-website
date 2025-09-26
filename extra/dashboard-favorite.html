@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uniland - Real Estate HTML5 Template">
+    <meta name="keywords" content="real estate, property, property search, agent, apartments, booking, business, idx, housing, real estate agency, rental">
+    <meta name="author" content="unicoder">
+    <title>Uniland - Real Estate HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon2.ico">
+
+    <!-- Google Font -->	
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/webfonts/unicode/style.css">
+    <link rel="stylesheet" href="assets/css/layerslider.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/control.css">
+
+</head>
+<body class="dashboard-message">
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div id="page_wrapper" class="bg-light-gray">
+        <div class="sidebar-page-wrapper">
+            <div class="left-sidebar-block bg-dark p-0">
+                <div class="dashboard-logo">
+                   <h4 class="logo">Admin Panel</h4>
+                </div>
+                <nav class="dashboard-nav nav-light pb-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav left-collaps-nav">
+                        <h5 class="dashboard-nav-title">Overview</h5>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fa-solid fa-layer-group"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-message.html"><i class="fa-solid fa-envelope"></i> Message</a></li>
+                        <h5 class="dashboard-nav-title">Manage Listing</h5>
+                        <li class="nav-item db-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"><i class="fa-solid fa-house"></i> My Properties</a>
+                            <ul class="db-dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="dashboard-listing.html">General Listing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="dashboard-element-listing.html">Element Listing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Management</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-favorite.html"><i class="fa-solid fa-heart"></i> My Favorite</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-submit-property.html"><i class="fa-solid fa-paper-plane"></i> Submit Property</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-reviews.html"><i class="fa-solid fa-star"></i> Reviews</a></li>
+                        <h5 class="dashboard-nav-title">Account Settings</h5>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-profile-settings.html"><i class="fa-solid fa-wrench"></i> Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="right-sidebar-block">
+                <!--============== Header Section Start ==============-->
+                <header class="dashboard-header border-bottom bg-white">
+                    <div class="main-nav">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav class="navbar navbar-expand-lg nav-secondary nav-primary-hover py-0">
+                                        <div class="navbar-collapse justify-content-between">
+                                            <ul class="navbar-nav status-bar">
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="blog-grid-classic.html">Dashboard Options</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Messages</a></li>
+                                                        <li><a class="dropdown-item" href="#">My Listing</a></li>
+                                                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                                                        <li><a class="dropdown-item" href="#">Submit Property</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i><sup>10</sup></a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><i class="fa-solid fa-comment"></i><sup>2</sup></a>
+                                                </li>
+                                            </ul>
+                                            <ul class="navbar-nav user-option">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Earnings: <span class="color-primary fw-semibold">$25400</span></a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><img src="assets/images/user1.jpg" alt=""> Hi, Jason</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!--============== Header Section End ==============-->
+
+                <!--============== Dashboard Start ==============-->
+                <div class="full-row p-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="mb-3 color-dark">My Favouraite Property</h5>
+                            </div>
+                            <div class="col-12">
+                                <div class="notice-warning alert alert-warning alert-dismissible fade show" role="alert">
+                                  <span><strong>Holy guacamole!</strong> You should check in on some of those fields below.</span>
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-md-3 row-cols-1 g-4">
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-2.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$1850<small> / Monthly</small></span>
+                                            <div class="type"><span class="sale text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-1.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$6500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-3.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Villa</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 22, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Gorgeous Villa Bay View</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$10500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-4.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condo</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">New Condo For Rent</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$2500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-5.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-6.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$10500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-7.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condo</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">New Condo For Rent</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$2500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-8.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$120,5500<small> / Fixed</small></span>
+                                            <div class="type"><span class="sale text-white">For Sale</span><span class="featured text-white">Featured</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-2.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condos</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 17, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Luxury Condos Riverside</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 2305 Frog Lane Overlandpk, MO 66210</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>3200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$1850<small> / Monthly</small></span>
+                                            <div class="type"><span class="sale text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-1.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$10500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-7.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Condo</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">New Condo For Rent</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>7</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>5</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Property Grid -->
+                                <div class="property-grid-3 property-block hover-shadow-lg">
+                                    <div class="entry-wrapper">
+                                        <div class="entry-thumbnail">
+                                            <span class="listing-price">$2500<small> / Monthly</small></span>
+                                            <div class="type"><span class="rent text-white">For Rent</span></div>
+                                            <ul class="quick-meta">
+                                                <li><a href="#" title="Delete List"><i class="fa-solid fa-trash"></i></a></li>
+                                            </ul>
+                                            <a href="property-single-v1.html" class="entry-thumbnail-image"><img src="assets/images/property/property-grid-8.png" alt="real estate template"></a>
+                                        </div>
+                                        <div class="entry-content-wrapper">
+                                            <div class="entry-header">
+                                                <div class="post-meta">
+                                                    <div class="property-type"><a href="#">Appartment</a></div>
+                                                    <div class="post-date"><i class="fa-regular fa-calendar-days"></i> <span>June 12, 2023</span></div>
+                                                </div>
+                                                <h5 class="listing-title"><a href="property-single-v1.html">Awesome Family Appartment</a></h5>
+                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> 4213 South Burlington, VT 05403</span>
+                                            </div>
+                                            <div class="entry-content">
+                                                <ul class="property-info">
+                                                    <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>2</li>
+                                                    <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>2</li>
+                                                    <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span>1200 Sqft</li>
+                                                    <li title="Garage"><span><i class="fa-solid fa-warehouse"></i></span>Yes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1">
+                            <div class="pagination-wrap">
+                                <nav class="d-flex justify-content-between">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled"><a class="page-link" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only"></span></a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a></li>
+                                    </ul>
+                                    <span>1-8 of 300+ property available</span>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--============== End Dashboard Start ==============-->
+
+                <!--============== Footer Start =============-->
+                <div class="full-row pt-5 pb-5 bg-white">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 text-center"><span>© 2024 Uniland All right reserved</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!--============== Footer End =============-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/piechart/chart.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/mixitup.min.js"></script>
+    <script src="assets/js/range/tmpl.js"></script>
+    <script src="assets/js/range/jquery.dependClass.js"></script>
+    <script src="assets/js/range/draggable.js"></script>
+    <script src="assets/js/range/jquery.slider.js"></script>
+    <script src="assets/js/paraxify.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>

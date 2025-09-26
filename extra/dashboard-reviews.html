@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Uniland - Real Estate HTML5 Template">
+    <meta name="keywords" content="real estate, property, property search, agent, apartments, booking, business, idx, housing, real estate agency, rental">
+    <meta name="author" content="unicoder">
+    <title>Uniland - Real Estate HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon2.ico">
+
+    <!-- Google Font -->    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/webfonts/unicode/style.css">
+    <link rel="stylesheet" href="assets/css/layerslider.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/control.css">
+</head>
+<body class="dashboard-reviews">
+
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div id="page_wrapper" class="bg-light-gray">
+        <div class="sidebar-page-wrapper">
+            <div class="left-sidebar-block bg-dark p-0">
+                <div class="dashboard-logo">
+                   <h4 class="logo">Admin Panel</h4>
+                </div>
+                <nav class="dashboard-nav nav-light pb-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav left-collaps-nav">
+                        <h5 class="dashboard-nav-title">Overview</h5>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fa-solid fa-layer-group"></i> Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-message.html"><i class="fa-solid fa-envelope"></i> Message</a></li>
+                        <h5 class="dashboard-nav-title">Manage Listing</h5>
+                        <li class="nav-item db-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"><i class="fa-solid fa-house"></i> My Properties</a>
+                            <ul class="db-dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="dashboard-listing.html">General Listing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="dashboard-element-listing.html">Element Listing</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Management</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-favorite.html"><i class="fa-solid fa-heart"></i> My Favorite</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-submit-property.html"><i class="fa-solid fa-paper-plane"></i> Submit Property</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-reviews.html"><i class="fa-solid fa-star"></i> Reviews</a></li>
+                        <h5 class="dashboard-nav-title">Account Settings</h5>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard-profile-settings.html"><i class="fa-solid fa-wrench"></i> Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="right-sidebar-block">
+                <!--============== Header Section Start ==============-->
+                <header class="dashboard-header border-bottom bg-white">
+                    <div class="main-nav">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav class="navbar navbar-expand-lg nav-secondary nav-primary-hover py-0">
+                                        <div class="navbar-collapse justify-content-between">
+                                            <ul class="navbar-nav status-bar">
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="blog-grid-classic.html">Dashboard Options</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Messages</a></li>
+                                                        <li><a class="dropdown-item" href="#">My Listing</a></li>
+                                                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                                                        <li><a class="dropdown-item" href="#">Submit Property</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><i class="fa-solid fa-bell"></i><sup>10</sup></a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><i class="fa-solid fa-comment"></i><sup>2</sup></a>
+                                                </li>
+                                            </ul>
+                                            <ul class="navbar-nav user-option">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Earnings: <span class="color-primary fw-semibold">$25400</span></a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#"><img src="assets/images/user1.jpg" alt=""> Hi, Jason</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!--============== Header Section End ==============-->
+
+                <!--=============== Dashboard Start ================-->
+                <div class="full-row p-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="py-3 color-dark">User Reviews</h5>
+                            </div>
+                            <div class="col-12">
+                                <div class="db-review-statistics">
+                                    <div class="db-review-data">
+                                        <h6>Average Rating</h6>
+                                        <div class="db-rating-score">
+                                            <span class="db-score-avg">4.7</span>
+                                            <span class="db-star-rating-bg">
+                                                <span class="db-star-rating" style="width: 94%;"></span>
+                                            </span>
+                                        </div>
+                                        <span class="db-rating-text color-gray">Avarage rating on this year</span>
+                                    </div>
+                                    <div class="db-review-data">
+                                        <h6>Total Review</h6>
+                                        <div class="db-rating-score">
+                                            <span class="db-score-avg">10.2k</span>
+                                            <span class="db-rating-grow"><i class="fa-solid fa-arrow-up"></i> 21%</span>
+                                        </div>
+                                        <span class="db-rating-text color-gray">Grow Review on this year</span>
+                                    </div>
+                                    <div class="db-review-data">
+                                        <ul class="db-score-list">
+                                            <li><span>5</span><span class="rating-length" style="width:70%; background: darkseagreen;"></span><span>7.2k</span></li>
+                                            <li><span>4</span><span class="rating-length" style="width:20%; background: mediumpurple;"></span><span>1.2k</span></li>
+                                            <li><span>3</span><span class="rating-length" style="width:5%; background: orange;"></span><span>500</span></li>
+                                            <li><span>2</span><span class="rating-length" style="width:3%; background: blue;"></span><span>200</span></li>
+                                            <li><span>2</span><span class="rating-length" style="width:2%; background: red;"></span><span>100</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="submited-review-status">
+                                    <li><a href="#">All (10)</a></li>
+                                    <li><a href="#">Pending (10)</a></li>
+                                    <li><a href="#">Approved (12)</a></li>
+                                    <li><a href="#">Spam (2)</a></li>
+                                    <li><a href="#">Trash (5)</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="dashboard-panel border bg-white rounded overflow-hidden w-100">
+                                    <div class="db-review-table">
+                                        <table class="w-100 items-list bg-transparent">
+                                            <thead>
+                                                <tr>
+                                                    <th>Author</th>
+                                                    <th>Comments</th>
+                                                    <th>In Response To</th>
+                                                    <th>Submitted On</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="db-comments-author">
+                                                            <img src="assets/images/user1.jpg">
+                                                            <span>Mr. Jonson</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-comments-text">
+                                                            <span class="db-single-rating"></span>
+                                                            <p>I recently purchased [product/service] from [company name], and I couldn’t be happier! The quality exceeded my expectations, and the customer service was outstanding. The team was responsive, helpful, and ensured I had a smooth experience from start to finish.</p>
+                                                            <div class="db-review-action">
+                                                                <a href="#">Approve</a>
+                                                                <a href="#">Replay</a>
+                                                                <a href="#">Edit</a>
+                                                                <a href="#">Spam</a>
+                                                                <a href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-response-property">
+                                                            <h6 class="property-title">Gorgeous Villa Bay View</h6>
+                                                            <a href="#">View Property</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-feedback-submitted">
+                                                            <span>2025/03/24 at 03:20 pm</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="db-feedback-status" href="#">Pending</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="db-comments-author">
+                                                            <img src="assets/images/user2.jpg">
+                                                            <span>Mr. Jonson</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-comments-text">
+                                                            <p>I recently purchased [product/service] from [company name], and I couldn’t be happier! The quality exceeded my expectations, and the customer service was outstanding. The team was responsive, helpful, and ensured I had a smooth experience from start to finish.</p>
+                                                            <div class="db-review-action">
+                                                                <a href="#">Approve</a>
+                                                                <a href="#">Replay</a>
+                                                                <a href="#">Edit</a>
+                                                                <a href="#">Spam</a>
+                                                                <a href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-response-property">
+                                                            <h6 class="property-title">Gorgeous Villa Bay View</h6>
+                                                            <a href="#">View Property</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-feedback-submitted">
+                                                            <span>2025/03/24 at 03:20 pm</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="db-feedback-status" href="#">Pending</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="db-comments-author">
+                                                            <img src="assets/images/user3.jpg">
+                                                            <span>Mr. Jonson</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-comments-text">
+                                                            <p>I recently purchased [product/service] from [company name], and I couldn’t be happier! The quality exceeded my expectations, and the customer service was outstanding. The team was responsive, helpful, and ensured I had a smooth experience from start to finish.</p>
+                                                            <div class="db-review-action">
+                                                                <a href="#">Approve</a>
+                                                                <a href="#">Replay</a>
+                                                                <a href="#">Edit</a>
+                                                                <a href="#">Spam</a>
+                                                                <a href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-response-property">
+                                                            <h6 class="property-title">Gorgeous Villa Bay View</h6>
+                                                            <a href="#">View Property</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-feedback-submitted">
+                                                            <span>2025/03/24 at 03:20 pm</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="db-feedback-status" href="#">Pending</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="db-comments-author">
+                                                            <img src="assets/images/user4.jpg">
+                                                            <span>Mr. Jonson</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-comments-text">
+                                                            <p>I recently purchased [product/service] from [company name], and I couldn’t be happier! The quality exceeded my expectations, and the customer service was outstanding. The team was responsive, helpful, and ensured I had a smooth experience from start to finish.</p>
+                                                            <div class="db-review-action">
+                                                                <a href="#">Approve</a>
+                                                                <a href="#">Replay</a>
+                                                                <a href="#">Edit</a>
+                                                                <a href="#">Spam</a>
+                                                                <a href="#">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-response-property">
+                                                            <h6 class="property-title">Gorgeous Villa Bay View</h6>
+                                                            <a href="#">View Property</a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="db-feedback-submitted">
+                                                            <span>2025/03/24 at 03:20 pm</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="db-feedback-status" href="#">Pending</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--============= End Dashboard Start ==============-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript Files -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/piechart/chart.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/mixitup.min.js"></script>
+    <script src="assets/js/range/tmpl.js"></script>
+    <script src="assets/js/range/jquery.dependClass.js"></script>
+    <script src="assets/js/range/draggable.js"></script>
+    <script src="assets/js/range/jquery.slider.js"></script>
+    <script src="assets/js/paraxify.js"></script>
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>

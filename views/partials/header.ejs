@@ -1,0 +1,123 @@
+<header class="main-header header-style-3 header-absolute bg-dark">
+            <div class="main-nav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <nav class="navbar navbar-expand-lg nav-white nav-active-primary nav-hover-primary nav-line-active">
+                                <a class="navbar-brand" href="/"><img class="nav-logo" src="assets/images/logo/logo-full-white.png" alt="real estate template"></a>
+                                <button class="mobile-login" title="Login or Registration" data-bs-toggle="modal" data-bs-target="#loginmodal"><i class="fa-regular fa-user"></i></button>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon flaticon-menu flat-small text-primary"></span>
+                                  </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav ms-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/browse">Browse</a>
+                                        </li>
+                                        <li class="nav-item mega-dropdown">
+                                            <a class="nav-link" href="#">Pages</a>
+                                            <ul class="dropdown-menu mega-dropdown-menu">
+                                                <li class="mega-container">
+                                                    <div class="row row-cols-lg-4 row-cols-1">
+                                                        <div class="col">
+                                                            <ul>
+                                                                <li><a class="dropdown-item" href="about">About Us</a></li>
+                                                                <li><a class="dropdown-item" href="our-mission">Our Mission</a></li>
+                                                                <li><a class="dropdown-item" href="career">Careers</a></li>
+                                                                <li><a class="dropdown-item" href="award">Awards</a></li>
+                                                                <li><a class="dropdown-item" href="testimonials">Testimonials</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col">
+                                                            <ul>
+                                                                <li><a class="dropdown-item" href="our-services">Our Services</a></li>
+                                                                <li><a class="dropdown-item" href="terms-and-condition">Terms And Condition</a></li>
+                                                                <li><a class="dropdown-item" href="faq">FAQ</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/sell">Sell</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/calculator">EMI Calculator</a>
+                                        </li>
+                                    </ul>
+                                    <a href="#" 
+                                       class="btn btn-primary btn-hover-secondary hover-flash-move" 
+                                       data-bs-toggle="modal" 
+                                       data-bs-target="#scheduleCallModal">
+                                       + Schedule a call
+                                    </a>
+                                    <div class="modal fade " id="scheduleCallModal" tabindex="-1" aria-labelledby="scheduleCallLabel">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content rounded-3 shadow">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="scheduleCallLabel">Schedule a Call</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form id="scheduleCallForm">
+                                              <div class="mb-3">
+                                                <label class="form-label">Full Name</label>
+                                                <input type="text" class="form-control" name="name" required>
+                                              </div>
+                                              <div class="mb-3">
+                                                <label class="form-label">Email address</label>
+                                                <input type="email" class="form-control" name="email" required>
+                                              </div>
+                                              <div class="mb-3">
+                                                <label class="form-label">Contact Number</label>
+                                                <input type="tel" class="form-control" name="contact" required>
+                                              </div>
+                                              <button type="submit" class="btn btn-primary w-100">Submit</button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <script>
+                                    document.getElementById("scheduleCallForm").addEventListener("submit", async function(e) {
+                                      e.preventDefault();
+  
+                                      const formData = {
+                                        name: this.name.value,
+                                        email: this.email.value,
+                                        contact: this.contact.value
+                                      };
+
+                                      try {
+                                        const res = await fetch("/schedule-call", {
+                                          method: "POST",
+                                          headers: { "Content-Type": "application/json" },
+                                          body: JSON.stringify(formData)
+                                        });
+    
+                                        const data = await res.json();
+                                        if (data.success) {
+                                          alert("Your request has been saved! ✅");
+                                          this.reset();
+                                          const modal = bootstrap.Modal.getInstance(document.getElementById("scheduleCallModal"));
+                                          modal.hide();
+                                        } else {
+                                          alert("Something went wrong ❌");
+                                        }
+                                      } catch (err) {
+                                        console.error(err);
+                                        alert("Server error!");
+                                      }
+                                    });
+                                    </script>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
