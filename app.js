@@ -12,7 +12,9 @@ const addagent=require('./models/addagent');
 const addamenities=require('./models/addamenities');
 const addbank=require('./models/addbank');
 const multer=require('multer');
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("./models/user");
 
 app.use(expressLayouts);
 app.set('layout',"layouts/main");
@@ -44,8 +46,13 @@ mongoose.connect(dbURI).then((result)=>{
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+    res.locals.currentPath = req.path;
+    next();
+});
 
 
 app.get('/',(req,res)=>{
@@ -158,10 +165,47 @@ app.get('/amenities', async (req, res) => {
     }
 });
 
-app.get('/banks',(req,res)=>{
-    res.render("admin/banks",{
+app.get('/editamenities/:id', async (req, res) => {
+  try {
+    const amenity = await addamenities.findById(req.params.id);
+    if (!amenity) {
+      return res.status(404).send("Amenity not found");
+    }
+    res.render("admin/editamenities", {
+      amenity,
+      layout: adminLayout,
+      
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+app.post("/editamenities/:id", async (req, res) => {
+  try {
+    const { amenities } = req.body;
+    const amenityId = req.params.id;
+
+    await addamenities.findByIdAndUpdate(amenityId, { amenities });
+
+    res.json({ success: true, message: "Amenity updated!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+app.get('/banks',async (req,res)=>{
+  try{
+    const mybanks=await addbank.find();
+     res.render("admin/banks",{ mybanks,
         layout:adminLayout
     });
+  }catch(err){
+    res.status(500).send('Server error')
+  }
 });
 
 app.get('/customers',(req,res)=>{
@@ -217,17 +261,44 @@ app.get('/addagent', (req, res) => {
   });
 });
 
-app.post('/addagent',async (req,res)=>{
-    try {
-    const { name,email,password,contact, location } = req.body;
-    const newagent = new addagent({name,email,password,contact, location });
-    await newagent.save();
+// app.post('/addagent',async (req,res)=>{
+//     try {
+//     const { name,email,password,contact, location } = req.body;
+//     const newagent = new addagent({name,email,password,contact, location });
+//     await newagent.save();
+//     res.json({ success: true, message: "Agent Added!" });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ success: false, message: "Error saving request" });
+//   }
+// })
+
+app.post("/addagent", async (req, res) => {
+  try {
+    const { name, email, password, contact, location } = req.body;
+
+    if (!name || !email || !contact || !password || !location) {
+      return res.status(400).json({ success: false, message: "All fields required" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAgent = new addagent({
+      name,
+      email,
+      password: hashedPassword,
+      contact,
+      location
+    });
+
+    await newAgent.save();
+
     res.json({ success: true, message: "Agent Added!" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false, message: "Error saving request" });
+    res.status(500).json({ success: false, message: "Error saving agent" });
   }
-})
+});
 
 app.get('/addamenities', (req, res) => {
   res.render('admin/addamenities',{
@@ -269,3 +340,51 @@ app.post('/addbank',upload.single('upload'),async (req,res)=>{
     res.status(500).json({ success: false, message: "Error saving request" });
   }
 }) 
+
+function adminAuth(req, res, next) {
+    const token = req.cookies.token;
+
+    if (!token) return res.status(401).json({ message: "Access denied" });
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret");
+
+        if (!decoded.isAdmin) {
+            return res.status(403).json({ message: "Admin privileges required" });
+        }
+
+        req.user = decoded;
+        next();
+    } catch (err) {
+        res.status(400).json({ message: "Invalid token" });
+    }
+}
+
+app.get('/login', (req, res) => {
+  res.render('login',{
+  });
+});
+
+app.post("/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const user = await User.findOne({ username });
+        if (!user) return res.status(400).json({ success: false, message: "Invalid credentials" });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(400).json({ success: false, message: "Invalid credentials" });
+
+        const token = jwt.sign(
+            { id: user._id, isAdmin: user.isAdmin },
+            process.env.JWT_SECRET || "your_jwt_secret",
+            { expiresIn: "1h" }
+        );
+
+        res.cookie("token", token, { httpOnly: true });
+        res.json({ success: true, token, isAdmin: user.isAdmin });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+});

@@ -1,0 +1,70 @@
+<div class="page-title-wrapper d-lg-flex flex-column gap-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 bg-transparent p-0">
+      <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="/amenities">Amenities</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Edit Amenity</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Edit Amenity</h1>
+</div>
+
+<div class="full-row pt-0">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <div class="contact-form">
+          <form  method="POST" id="editamenities" action="/editamenities/<%= amenity._id %>">
+            <div class="row align-items-center mb-3">
+              <div class="col-auto">
+                <label class="mb-0 color-dark">Name of Amenity</label>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="amenities"
+                  value="<%= amenity.amenities %>"
+                  required
+                >
+              </div>
+              <div class="col-lg-12">
+                <button type="submit" class="btn btn-primary">
+                  Update Amenity
+                </button>
+              </div>
+            </div>
+          </form>
+          <script>
+            document.getElementById("editamenities").addEventListener("submit", async function (e) {
+              e.preventDefault();
+
+              const formData = {
+                amenities: this.amenities.value,
+              };
+
+              try {
+                const res = await fetch(`/editamenities/<%= amenity._id %>`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                  alert("Amenity updated! ✅");
+                  window.location.href = "/amenities";
+                } else {
+                  alert("Something went wrong ❌");
+                }
+              } catch (err) {
+                console.error(err);
+                alert("Server error!");
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
