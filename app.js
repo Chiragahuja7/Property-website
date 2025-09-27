@@ -146,10 +146,16 @@ app.get('/leads',(req,res)=>{
     });
 });
 
-app.get('/amenities',(req,res)=>{
-    res.render("admin/amenities",{
-        layout:adminLayout
-    });
+app.get('/amenities', async (req, res) => {
+    try {
+        const myamenities = await addamenities.find();
+        // console.log(myamenities)
+        res.render('admin/amenities', { myamenities,
+            layout:adminLayout
+         });
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
 });
 
 app.get('/banks',(req,res)=>{

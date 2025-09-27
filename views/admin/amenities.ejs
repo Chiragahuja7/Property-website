@@ -67,14 +67,28 @@
 </div>
 
 <table>
-     <thead>
-          <tr>
-         <th>S.No</th>
-         <th>Name</th>
-         <th>Action</th>
-         </tr>
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
     </thead>
+<tbody>
+    <% myamenities.forEach((amenity, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= amenity.amenities %></td>
+            <td class="d-flex gap-2 justify-content-center">
+                <a href="/editamenities/<%= amenity._id %>" class="btn btn-warning btn-sm flex-fill">Edit</a>
+                <a href="/deleteamenities/<%= amenity._id %>" class="btn btn-danger btn-sm flex-fill">Delete</a>
+            </td>
+        </tr>
+    <% }); %>
+</tbody>
+
 </table>
+
 <!--============== End Dashboard Start ==============-->
     <!-- Javascript Files -->
     <script src="assets/js/jquery.min.js"></script>
