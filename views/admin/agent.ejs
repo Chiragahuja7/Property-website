@@ -60,7 +60,7 @@
         </div>
 
         <form class="d-flex mb-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search properties" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Search agent" aria-label="Search">
             <button class="btn btn-primary">Search</button>
         </form>
     </div>
@@ -76,6 +76,19 @@
          <th>Action</th>
          </tr>
     </thead>
+    <tbody>
+    <% myagents.forEach((agent, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= agent.name %></td>
+            <td><%= agent.location %></td>
+            <td><%= agent.status %></td>
+            <td class="d-flex gap-2 justify-content-center">
+                <a href="/editagent/<%= agent._id %>" class="btn btn-warning btn-sm flex-fill">Edit</a>
+            </td>
+        </tr>
+    <% }); %>
+</tbody>
 </table>
 <!--============== End Dashboard Start ==============-->
 

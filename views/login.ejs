@@ -38,7 +38,7 @@
                         <div class="page-title-wrapper d-lg-flex flex-column gap-3">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0 bg-transparent p-0">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Login</li>
                                 </ol>
                             </nav>
@@ -60,26 +60,23 @@
                     <div class="col-md-5">
                         <div class="signin-form">
                             <h5>User Login</h5>
-                            <form action="#" method="POST">
+                            <form action="/login" method="POST">
                                 <div class="row g-3">
                                     <div class="col-12">
                                         <label>Username</label>
-                                        <input type="text" class="form-control" name="" placeholder="">
+                                        <input type="text" class="form-control" name="email" placeholder="">
                                     </div>
                                     <div class="col-12">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" name="" placeholder="">
+                                        <input type="password" class="form-control" name="password" placeholder="">
                                     </div>
                                     <div class="col-12">
-                                        <input type="checkbox" name=""> Remember next time
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" name="" class="btn btn-dark hover-flash-move">Sign In</button>
+                                        <button type="submit" class="btn btn-dark hover-flash-move">Sign In</button>
                                     </div>
                                 </div>
                             </form>
                             <a href="#">Forgot Password or Username</a>
-                            <span>Don't have account? <a href="signup.html">Click here</a></span>
+                            <span>Don't have account? <a href="signup">Click here</a></span>
                         </div>
                     </div>
                 </div>

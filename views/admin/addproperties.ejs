@@ -1,0 +1,142 @@
+<div class="page-title-wrapper d-lg-flex flex-column gap-3">
+            <nav aria-label="breadcrumb">
+                 <ol class="breadcrumb mb-0 bg-transparent p-0">
+                     <li class="breadcrumb-item"><a href="/admin"> Dashboard</a></li>
+                     <li class="breadcrumb-item"><a href="/properties">properties</a></li>
+                     <li class="breadcrumb-item active" aria-current="page">add properties</li>
+                 </ol>
+             </nav>
+             <h1 class="page-title">Add Properties</h1>
+</div>
+<br><br>
+<div class="full-row pt-0">
+  <div class="container">
+    <div class="row g-5">
+      <div id="agentcall" class="col-lg-10">
+        <div class="contact-form">
+          <form method="POST" id="addproperties">
+            <div class="row g-3">
+              <div class="col-lg-12">
+                <label>Property Title</label>
+                <input type="text" class="form-control" name="propertyName" required>
+              </div>
+              <div class="col-lg-12">
+                <label>Builder Name</label>
+                <input type="text" class="form-control" name="builderName" required>
+              </div>
+              <div class="col-lg-12">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Property Type</label>
+                <input type="text" class="form-control" name="propertyType" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Property Status</label>
+                <input type="text" class="form-control" name="propertyStatus" required>
+              </div>
+              <div class="col-lg-6">
+                <label> Location</label>
+                <input type="text" class="form-control" name="location" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Price Per Sq Feet</label>
+                <input type="number" class="form-control" name="pricePerSquareFeet" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Area Sq Feet(FROM)</label>
+                <input type="number" class="form-control" name="areaSquareFeetFrom" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Area Sq Feet(TO)</label>
+                <input type="number" class="form-control" name="areaSquareFeetTo" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Price From (In Words)</label>
+                <input type="text" class="form-control" name="priceFromInWords" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Price To (In Words)</label>
+                <input type="text" class="form-control" name="priceToInWords" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Price Starting From (In Number)</label>
+                <input type="number" class="form-control" name="priceFromInNumber" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Price Starting To (In Number)</label>
+                <input type="number" class="form-control" name="priceToInNumber" required>
+              </div>
+              <div class="col-lg-12">
+                <label>Address</label>
+                <input type="text" class="form-control" name="address" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Video URL</label>
+                <input type="text" class="form-control" name="videoUrl" required>
+              </div>
+              <div class="col-lg-6">
+                <label>Years Of Construction</label>
+                <input type="number" class="form-control" name="yearsOfConstruction" required>
+              </div>
+              <div class="col-lg-12">
+                <label>Listing Status</label>
+                <input type="text" class="form-control" name="listingStatus" required>
+              </div>
+              <div class="col-lg-12">
+                <button type="submit" class="btn btn-primary">SAVE</button>
+              </div>
+            </div>
+          </form>
+
+          <script>
+            document.getElementById("addproperties").addEventListener("submit", async function (e) {
+              e.preventDefault();
+
+              const formData = {
+                 propertyName: this.propertyName.value,
+                 builderName: this.builderName.value,
+                 description: this.description.value,
+                 propertyType: this.propertyType.value,
+                 propertyStatus: this.propertyStatus.value,
+                 location: this.location.value,
+                 pricePerSquareFeet: this.pricePerSquareFeet.value,
+                 areaSquareFeetFrom: this.areaSquareFeetFrom.value,
+                 areaSquareFeetTo: this.areaSquareFeetTo.value,
+                 priceFromInWords: this.priceFromInWords.value,
+                 priceToInWords: this.priceToInWords.value,
+                 priceFromInNumber: this.priceFromInNumber.value,
+                 priceToInNumber: this.priceToInNumber.value,
+                 address: this.address.value,
+                 videoUrl: this.videoUrl.value,
+                 yearsOfConstruction: this.yearsOfConstruction.value,
+                 listingStatus: this.listingStatus.value
+               };
+
+              try {
+                const res = await fetch("/addproperties", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                  alert("Your request has been saved! ✅");
+                  window.location.href = "/properties"
+                  // this.reset();
+                } else {
+                  alert("Something went wrong ❌");
+                }
+              } catch (err) {
+                console.error(err);
+                alert("Server error!");
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

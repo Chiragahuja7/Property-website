@@ -73,6 +73,14 @@
          <th>City/Area</th>
          </tr>
     </thead>
+    <tbody>
+    <% mylocation.forEach((location, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= location.location %></td>
+        </tr>
+    <% }); %>
+</tbody>
 </table>
 <!--============== End Dashboard Start ==============-->
 

@@ -15,8 +15,8 @@ const scheduleCallSchema=new mongoose.Schema({
         required:true
     },
     createdAt:{
-        type:Date,
-        default:Date.now
+        type:String,
+        default: () => new Date().toISOString().split('T')[0]
     },
     address:{
         type:String
@@ -24,6 +24,5 @@ const scheduleCallSchema=new mongoose.Schema({
     message:{
         type:String
     }
-
 })
 module.exports=mongoose.model('ScheduleCall',scheduleCallSchema);

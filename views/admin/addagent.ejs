@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="assets/css/control.css">
 
 </head>
-</head>
+<!-- </head> -->
 <body>
 <div class="page-title-wrapper d-lg-flex flex-column gap-3">
             <nav aria-label="breadcrumb">
@@ -101,7 +101,8 @@
                 const data = await res.json();
                 if (data.success) {
                   alert("Your request has been saved! ✅");
-                  this.reset();
+                  window.location.href = "/agents"
+                  // this.reset();
                 } else {
                   alert("Something went wrong ❌");
                 }

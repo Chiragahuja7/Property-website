@@ -86,7 +86,8 @@
                 const data = await res.json();
                 if (data.success) {
                   alert("Your request has been saved! ✅");
-                  this.reset();
+                  window.location.href = "/banks"
+                  // this.reset();
                 } else {
                   alert("Something went wrong ❌");
                 }

@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const addagent=new mongoose.Schema({
+const leads=new mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -18,16 +18,23 @@ const addagent=new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    password:{
+    address:{
         type:String,
     },
-    location:{
+    message:{
         type:String,
+    },
+    assigned:{
+        type:String,
+        default:"admin"
     },
     status:{
         type:String,
         default:"active",
+    },
+    property:{
+        type:String,
     }
 
 })
-module.exports=mongoose.model('addagent',addagent);
+module.exports=mongoose.model('leads',leads);

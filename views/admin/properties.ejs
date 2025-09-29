@@ -53,9 +53,9 @@
                 <h5 class="mb-0 color-dark">Properties</h5>
             </div>
             <div class="col-auto ms-auto">
-                <button class="btn btn-primary">
+                <a href="/addproperties" class="btn btn-primary">
                     Add Property
-                </button>
+                </a>
             </div>
         </div>
 
@@ -76,6 +76,19 @@
          <th>Action</th>
          </tr>
     </thead>
+    <tbody>
+    <% myproperties.forEach((property, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= property.propertyName %></td>
+            <td><%= property.builderName %></td>
+            <td><%= property.location %></td>
+            <td class="d-flex gap-2 justify-content-center">
+                <a href="/editproperty/<%= property._id %>" class="btn btn-warning btn-sm flex-fill">Edit</a>
+            </td>
+        </tr>
+    <% }); %>
+</tbody>
 </table>
 <!--============== End Dashboard Start ==============-->
 

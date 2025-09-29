@@ -60,6 +60,34 @@
             </div>
         </div>
     </form>
+        <script>
+            document.getElementById("addlocation").addEventListener("submit", async function (e) {
+              e.preventDefault();
+
+              const formData = {
+                location: this.location.value,
+              };
+
+              try {
+                const res = await fetch("/addlocation", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                  alert("location added! ✅");
+                  window.location.href = "/locations"
+                } else {
+                  alert("Something went wrong ❌");
+                }
+              } catch (err) {
+                console.error(err);
+                alert("Server error!");
+              }
+            });
+          </script>
     </div>
 </body>
 </html>

@@ -1,10 +1,77 @@
-const mongoose = require('mongoose');
+const mongoose=require("mongoose")
 
-const propertySchema = new mongoose.Schema({
-  title: String,
-  location: String,
-  price: Number,
-  image: String
-});
+const addproperties=new mongoose.Schema({
+    propertyName:{
+        type:String,
+        required:true
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
+    },
+    location:{
+        type:String,
+    },
+    builderName:{
+        type:String,
+        required:true
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    propertyType:{
+        type:String,
+        required:true
+    },
+    propertyStatus:{
+        type:String,
+        required:true
+    },
+    pricePerSquareFeet:{
+        type:String,
+        required:true
+    },
+    areaSquareFeetFrom:{
+        type:String,
+        required:true
+    },
+    areaSquareFeetTo:{
+        type:String,
+        required:true
+    },
+    priceFromInWords:{
+        type:String,
+        required:true
+    },
+    priceToInWords:{
+        type:String,
+        required:true
+    },
+    priceFromInNumber:{
+        type:String,
+        required:true
+    },
+    priceToInNumber:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    videoUrl:{
+        type:String,
+        required:true
+    },
+    yearsOfConstruction:{
+        type:String,
+        required:true
+    },
+    listingStatus:{
+        type:String,
+        required:true
+    },
 
-module.exports = mongoose.model('Property', propertySchema);
+})
+module.exports=mongoose.model('addproperties',addproperties);
