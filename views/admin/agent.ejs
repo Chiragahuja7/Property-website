@@ -59,10 +59,12 @@
             </div>
         </div>
 
-        <form class="d-flex mb-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search agent" aria-label="Search">
-            <button class="btn btn-primary">Search</button>
-        </form>
+<form action="/search" method="get" class="d-flex" id="searchForm">
+  <input id="searchInput" name="query" type="search" class="form-control" placeholder="Search..." required>
+  <input type="hidden" name="type" value="agents" id="searchType">
+  <button type="submit" class="btn btn-primary ms-2">Search</button>
+</form>
+
     </div>
 </div>
 
@@ -84,7 +86,7 @@
             <td><%= agent.location %></td>
             <td><%= agent.status %></td>
             <td class="d-flex gap-2 justify-content-center">
-                <a href="/editagent/<%= agent._id %>" class="btn btn-warning btn-sm flex-fill">Edit</a>
+                <a href="/editagent/<%= agent._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
         </tr>
     <% }); %>

@@ -13,56 +13,296 @@
 <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-7">
+      <div class="col-lg-10">
         <div class="contact-form">
-          <form  method="POST" id="editproperty" action="/editproperty/<%= property._id %>">
-            <div class="row align-items-center mb-3">
-              <div class="col-auto">
-                <label class="mb-0 color-dark">Name of Property</label>
-              </div>
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="propertyName"
-                  value="<%= property.propertyName %>"
-                  required>
-              </div>
-              <div class="col-lg-12">
-                <button type="submit" class="btn btn-primary">
-                  Update Property
-                </button>
-              </div>
+          <form method="POST" class="editproperty" action="/editproperty/<%= property._id %>" enctype="multipart/form-data">
+  <div class="row g-3">
+
+    <div class="col-md-12">
+      <label class="form-label">Name of Property</label>
+      <input type="text" class="form-control" name="propertyName" 
+             value="<%= property.propertyName %>" required>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label">Builder Name</label>
+      <input type="text" class="form-control" name="builderName" 
+             value="<%= property.builderName %>" required>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="description" rows="3" required><%= property.description %></textarea>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Property Type</label>
+      <input type="text" class="form-control" name="propertyType" 
+             value="<%= property.propertyType %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Property Status</label>
+      <input type="text" class="form-control" name="propertyStatus" 
+             value="<%= property.propertyStatus %>" required>
+    </div>
+
+    <div class="col-md-6">
+  <label class="form-label">Location</label>
+  <select class="form-control" name="location" required>
+    <option value="">-- Select Location --</option>
+    <% mylocation.forEach(function(loc) { %>
+      <option value="<%= loc._id %>" <%= property.location && property.location.toString() === loc._id.toString() ? "selected" : "" %>>
+        <%= loc.location %>
+      </option>
+    <% }) %>
+    </select>
+     </div>
+
+
+    <div class="col-md-6">
+      <label class="form-label">Price Per Sq. Feet</label>
+      <input type="text" class="form-control" name="pricePerSquareFeet" 
+             value="<%= property.pricePerSquareFeet %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Area (From Sq. Ft.)</label>
+      <input type="text" class="form-control" name="areaSquareFeetFrom" 
+             value="<%= property.areaSquareFeetFrom %>" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Area (To Sq. Ft.)</label>
+      <input type="text" class="form-control" name="areaSquareFeetTo" 
+             value="<%= property.areaSquareFeetTo %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Price From (Words)</label>
+      <input type="text" class="form-control" name="priceFromInWords" 
+             value="<%= property.priceFromInWords %>" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Price To (Words)</label>
+      <input type="text" class="form-control" name="priceToInWords" 
+             value="<%= property.priceToInWords %>" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Price From (Number)</label>
+      <input type="text" class="form-control" name="priceFromInNumber" 
+             value="<%= property.priceFromInNumber %>" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Price To (Number)</label>
+      <input type="text" class="form-control" name="priceToInNumber" 
+             value="<%= property.priceToInNumber %>" required>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label">Address</label>
+      <textarea class="form-control" name="address" rows="2" required><%= property.address %></textarea>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Video URL</label>
+      <input type="url" class="form-control" name="videoUrl" 
+             value="<%= property.videoUrl %>" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Years of Construction</label>
+      <input type="text" class="form-control" name="yearsOfConstruction" 
+             value="<%= property.yearsOfConstruction %>" required>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label">Listing Status</label>
+      <input type="text" class="form-control" name="listingStatus" 
+             value="<%= property.listingStatus %>" required>
+    </div>
+
+  </div>
+<hr>
+<br>
+<div class="row g-3 mt-3">
+    <h1 class="page-title">Property Images</h1>
+    <div class="col-lg-12">
+        <label>Main Image</label>
+        <input type="file" class="form-control" name="mainImage" accept="image/*">
+    </div>
+    <% if (property.mainImage) { %>
+        <div class="col-lg-12 uploaded-images mt-3">
+            <label>Already Uploaded Main Image:</label>
+            <div class="d-flex flex-wrap gap-2">
+                        <div class="image-preview position-relative">
+                            <img src="<%= property.mainImage %>" style="width:130px;height:100px;object-fit:cover;">
+                        </div>
             </div>
-          </form>
-          <script>
-            document.getElementById("editproperty").addEventListener("submit", async function (e) {
-              e.preventDefault();
+        </div>
+    <% } %>
+    <div class="col-lg-12">
+        <label>Upload New Images</label>
+        <input type="file" class="form-control" name="upload" accept="image/*" multiple>
+    </div>
+    <% if (property.upload && property.upload.length) { %>
+        <div class="col-lg-12 uploaded-images mt-3">
+            <label>Already Uploaded Images:</label>
+            <div class="d-flex flex-wrap gap-2">
+                <% property.upload.forEach(function(img, index) { %>
+                    <% if (img) { %>
+                        <div class="image-preview position-relative">
+                            <img src="<%= img %>" style="width:130px;height:100px;object-fit:cover;">
+                        </div>
+                    <% } %>
+                <% }) %>
+            </div>
+        </div>
+    <% } %>
+</div>
 
-              const formData = {
-                propertyName: this.propertyName.value,
-              };
+<hr>
+<br>
+  <div class="row g-3 mt-3">
+    <h1 class="page-title">Edit Property Amenities</h1>
 
-              try {
-                const res = await fetch(`/editproperty/<%= property._id %>`, {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(formData)
-                });
+    <div class="col-lg-12">
+      <label>Select Amenities</label>
+      <br><br>
+      <div class="form-check">
+        <% myamenities.forEach(function(amenity) { %>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="amenities" value="<%= amenity._id %>"
+             <% if (property.amenities && property.amenities.includes(amenity._id.toString())) { %> checked <% } %>>
+            <label class="form-check-label"><%= amenity.amenities %></label>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+<hr>
+<br>
+<div class="row g-3 mt-3">
+<h1 class="page-title">Additional Info.</h1>
+<div class="col-lg-12">
+<h7>Select Apartement type</h7>
+<br><br>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="additionalInfo" value="1bhk"
+    <% if (property.additionalInfo && property.additionalInfo.includes("1bhk")) { %> checked <% } %>>
+  <label class="form-check-label">1 bhk</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="additionalInfo" value="2bhk"
+    <% if (property.additionalInfo && property.additionalInfo.includes("2bhk")) { %> checked <% } %>>
+  <label class="form-check-label">2 bhk</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="additionalInfo" value="3bhk"
+    <% if (property.additionalInfo && property.additionalInfo.includes("3bhk")) { %> checked <% } %>>
+  <label class="form-check-label">3 bhk</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="additionalInfo" value="4bhk"
+    <% if (property.additionalInfo && property.additionalInfo.includes("4bhk")) { %> checked <% } %>>
+  <label class="form-check-label">4 bhk</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="additionalInfo" value="5bhk"
+    <% if (property.additionalInfo && property.additionalInfo.includes("5bhk")) { %> checked <% } %>>
+  <label class="form-check-label">5 bhk</label>
+</div>
+</div>
+</div>
 
-                const data = await res.json();
-                if (data.success) {
-                  alert("Property updated! ✅");
-                  window.location.href = "/properties";
-                } else {
-                  alert("Something went wrong ❌");
-                }
-              } catch (err) {
-                console.error(err);
-                alert("Server error!");
-              }
-            });
-          </script>
+<hr>
+<br>
+<h1 class="page-title">Builder Description</h1>
+    <div class="col-md-12">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="builderDescription" rows="3" required><%= property.builderDescription %></textarea>
+    </div>
+<hr>
+<br>
+<h1 class="page-title pb-3">Nearby Places</h1>
+<div class="row g-3" id="nearbyPlacesWrapper">
+  <% if (property.nearbyPlaces && property.nearbyPlaces.length > 0) { %>
+    <% property.nearbyPlaces.forEach(function(place, index) { %>
+      <div class="col-md-6 d-flex gap-2">
+        <input class="form-control" name="nearbyPlaces" value="<%= place %>">
+        <button type="button" class="btn removePlace">❌</button>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <!-- At least one input if no places -->
+    <div class="col-md-6 d-flex gap-2">
+      <input class="form-control" name="nearbyPlaces" value="">
+      <button type="button" class="btn removePlace">❌</button>
+    </div>
+  <% } %>
+</div>
+
+<!-- Add More Button -->
+<div class="mt-3">
+  <button type="button" class="btn btn-primary" id="addPlace">+ Add More</button>
+</div>
+
+<br><br>
+<div class="col-lg-12">
+    <button type="submit" class="btn btn-primary">Save</button>
+</div>
+</form>
+<script>
+document.querySelectorAll(".editproperty").forEach(form => {
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+      const res = await fetch(this.action, {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert("Property updated! ✅");
+        window.location.href = "/properties";
+      } else {
+        alert("Something went wrong ❌");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error!");
+    }
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wrapper = document.getElementById("nearbyPlacesWrapper");
+  const addBtn = document.getElementById("addPlace");
+
+  // Add new field
+  addBtn.addEventListener("click", function () {
+    const div = document.createElement("div");
+    div.className = "col-md-6 d-flex gap-2";
+    div.innerHTML = `
+      <input class="form-control" name="nearbyPlaces" value="">
+      <button type="button" class="btn btn-danger removePlace❌</button>
+    `;
+    wrapper.appendChild(div);
+  });
+
+  // Remove field
+  wrapper.addEventListener("click", function (e) {
+    if (e.target.classList.contains("removePlace")) {
+      e.target.parentElement.remove();
+    }
+  });
+});
+</script>
+
         </div>
       </div>
     </div>

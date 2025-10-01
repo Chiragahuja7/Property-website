@@ -59,10 +59,11 @@
             </div>
         </div>
 
-        <form class="d-flex mb-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search properties" aria-label="Search">
-            <button class="btn btn-primary">Search</button>
-        </form>
+
+<form id="searchForm" class="d-flex mb-3" role="search">
+    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search..." aria-label="Search">
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
     </div>
 </div>
 
@@ -84,7 +85,7 @@
             <td><%= property.builderName %></td>
             <td><%= property.location %></td>
             <td class="d-flex gap-2 justify-content-center">
-                <a href="/editproperty/<%= property._id %>" class="btn btn-warning btn-sm flex-fill">Edit</a>
+                <a href="/editproperty/<%= property._id %>" ><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
         </tr>
     <% }); %>

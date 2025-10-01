@@ -183,24 +183,49 @@ app.post("/addproperties", adminAuth, async (req, res) => {
 
 app.get('/editproperty/:id',adminAuth, async (req, res) => {
   try {
+    const mylocation=await addlocation.find();
     const property = await addproperties.findById(req.params.id);
+    const myamenities = await addamenities.find();
     res.render("admin/editproperty", {
       property,
       layout: adminLayout,
-      
+      myamenities,
+      mylocation
     });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
-  }
+  } 
 });
-
-app.post("/editproperty/:id",adminAuth, async (req, res) => {
+ 
+app.post("/editproperty/:id",adminAuth,upload.fields([{name:"mainImage",maxCount:1},{name:"upload",maxCount:5}]),async(req,res)=>{
   try {
-    const { propertyName } = req.body;
     const propertyId = req.params.id;
+    let filePath = { ...req.body };
+    const property = await addproperties.findById(propertyId);
 
-    await addproperties.findByIdAndUpdate(propertyId, { propertyName });
+    if (!Array.isArray(filePath.additionalInfo) && filePath.additionalInfo) {
+      filePath.additionalInfo = [filePath.additionalInfo];
+    }
+
+    if (req.files["mainImage"]) {
+      filePath.mainImage = "/uploads/" + req.files["mainImage"][0].filename;
+    } else {
+      filePath.mainImage = property.mainImage || null; 
+    }
+
+    if (req.files["upload"]) {
+      const newUploads = req.files["upload"].map(file => "/uploads/" + file.filename);
+      filePath.upload = (property.upload || []).concat(newUploads);
+    } else {
+      filePath.upload = property.upload || [];
+    }
+
+    await addproperties.findByIdAndUpdate(
+      propertyId,
+      filePath,
+      { new: true, runValidators: true }
+    );
 
     res.json({ success: true, message: "Property updated!" });
   } catch (err) {
@@ -208,6 +233,7 @@ app.post("/editproperty/:id",adminAuth, async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 });
+
 
 app.get('/locations',adminAuth,async (req,res)=>{
       const mylocation=await addlocation.find();
@@ -320,7 +346,7 @@ app.get('/lost-leads',adminAuth,(req,res)=>{
     });
 });
 
-app.get('/calculator',adminAuth, (req, res) => {
+app.get('/calculator', (req, res) => {
   res.render('calculator');
 });
 
@@ -535,4 +561,56 @@ app.post("/signup", async (req, res) => {
     console.error(err);
     res.status(500).json({ success: false, message: "Error saving agent" });
   }
+});
+
+app.get('/search', async (req, res) => {
+    const { type, query } = req.query;
+
+    if (!type || !query) return res.send("Invalid search.");
+
+    let results = [];
+
+    if (type === "location") {
+        results = await addlocation.find({
+            location: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/location', { mylocation: results,
+          layout:adminLayout
+         });
+    }
+    if (type === "banks") {
+        results = await addbank.find({
+            name: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/banks', { mybanks: results,
+            layout:adminLayout
+         });
+    }
+
+    if (type === "properties") {
+        results = await addproperties.find({
+            propertyName: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/properties', { myproperties: results,
+            layout:adminLayout
+         });
+    }
+    if (type === "amenities") {
+        results = await addamenities.find({
+            amenities: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/amenities', { myamenities: results,
+            layout:adminLayout
+         });
+    }
+    if (type === "agent") {
+        results = await addagent.find({
+            name: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/agent', { myagents: results ,
+            layout:adminLayout
+        });
+    }
+
+    res.send("No results found.");
 });

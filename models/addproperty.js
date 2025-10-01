@@ -72,6 +72,29 @@ const addproperties=new mongoose.Schema({
         type:String,
         required:true
     },
-
+    upload:{
+        type:[String],
+        required:true
+    },
+    amenities:{
+        type:[String],
+        required:true
+    },
+    additionalInfo:{
+        type:[String],
+        required:true
+    },
+    builderDescription:{
+        type:String,
+        required:true
+    },
+    nearbyPlaces:{
+        type:[String],
+        default:[]
+    },
+    mainImage:{
+        type:String,
+        required:true
+    }
 })
 module.exports=mongoose.model('addproperties',addproperties);
