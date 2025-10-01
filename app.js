@@ -22,6 +22,7 @@ const addproperties=require('./models/addproperty');
 app.use(expressLayouts);
 app.set('layout',"layouts/main");
 const adminLayout=('layouts/admin-layout');
+const browseLayout=('layouts/browse-layout');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -71,9 +72,17 @@ app.get('/our-mission',(req,res)=>{
     res.render("our-mission");
 }); 
 
-app.get('/browse',(req,res)=>{
-    res.render("browse");
+app.get('/browse', async (req, res) => {
+  try {
+    const myamenities = await addamenities.find();
+    const myproperties = await addproperties.find();
+    res.render('browse', { myproperties,myamenities ,layout:browseLayout});
+  } catch (err) {
+    console.error(err);
+    res.render('browse', { myproperties: [] });
+  }
 });
+
 
 app.get('/career',(req,res)=>{
     res.render("career");
@@ -298,6 +307,18 @@ app.post("/editamenities/:id",adminAuth, async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 });
+
+app.get("/deleteamenities/:id", adminAuth, async (req, res) => {
+  try {
+    const amenityId = req.params.id;
+    await addamenities.findByIdAndDelete(amenityId);
+    res.redirect("/amenities");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 app.get('/banks',adminAuth,async (req,res)=>{
   try{

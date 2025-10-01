@@ -49,15 +49,15 @@
 
     <div class="col-md-6">
   <label class="form-label">Location</label>
-  <select class="form-control" name="location" required>
-    <option value="">-- Select Location --</option>
-    <% mylocation.forEach(function(loc) { %>
-      <option value="<%= loc._id %>" <%= property.location && property.location.toString() === loc._id.toString() ? "selected" : "" %>>
-        <%= loc.location %>
-      </option>
+  <select class="form-control text-dark" name="location" required>
+    <option class="text-dark" value="">-- Select Location --</option>
+    <% mylocation.forEach(loc => { %>
+    <option class="text-dark" value="<%= loc.location %>" <%= property.location == loc.location ? "selected" : "" %>>
+    <%= loc.location %>
+    </option>
     <% }) %>
-    </select>
-     </div>
+  </select>
+    </div>
 
 
     <div class="col-md-6">

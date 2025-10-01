@@ -81,7 +81,9 @@
             <td><%= amenity.amenities %></td>
             <td class="d-flex gap-5 justify-content-center">
                 <a href="/editamenities/<%= amenity._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="/deleteamenities/<%= amenity._id %>"><i class="fa-solid fa-trash"></i></a>
+                <a href="/deleteamenities/<%= amenity._id %>" 
+                 onclick="return confirm('Are you sure you want to delete this amenity');">
+                <i class="fa-solid fa-trash text-danger"></i></a>
             </td>
         </tr>
     <% }); %>

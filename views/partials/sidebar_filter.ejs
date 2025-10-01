@@ -1,0 +1,102 @@
+<form action="#" method="POST" class="quick-search slide-filter form-icon-right p-1">
+  <div class="row">
+    <!-- Location -->
+    <div class="col-12 mb-2">
+      <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Location</h6>
+    </div>
+    <div class="col-12 mb-3">
+      <div class="position-relative">
+        <input type="text" class="form-control" name="location" placeholder="Location">
+        <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
+      </div>
+    </div>
+
+    <!-- Property Type -->
+    <div class="col-12 mb-2">
+      <h6 class=" fs-6 text-uppercase ls-2 fw-semibold">Property Type</h6>
+    </div>
+    <div class="col-12 mb-3 p-0">
+      <ul class="select-custom gap-2 pl-1 pr-1">
+        <li><input type="radio" name="property-type" id="ptype-house" hidden><label for="ptype-house" class="select-btn">House</label></li>
+        <li><input type="radio" name="property-type" id="ptype-office" hidden><label for="ptype-office" class="select-btn">Office</label></li>
+        <li><input type="radio" name="property-type" id="ptype-apartment" hidden><label for="ptype-apartment" class="select-btn">Apartment</label></li>
+        <li><input type="radio" name="property-type" id="ptype-condos" hidden><label for="ptype-condos" class="select-btn">Condos</label></li>
+        <li><input type="radio" name="property-type" id="ptype-villa" hidden><label for="ptype-villa" class="select-btn">Villa</label></li>
+      </ul>
+    </div>
+
+    <!-- Property Status -->
+    <div class="col-12 mb-2 ">
+      <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Property Status</h6>
+    </div>
+    <div class="col-12 mb-3 p-0">
+      <ul class="select-custom gap-2">
+        <li><input type="radio" name="property-status" id="pstatus-sale" hidden><label for="pstatus-sale" class="select-btn">For Sale</label></li>
+        <li><input type="radio" name="property-status" id="pstatus-rent" hidden><label for="pstatus-rent" class="select-btn">For Rent</label></li>
+      </ul>
+    </div>
+
+    <!-- Price -->
+    <div class="col-12 mb-2">
+      <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Property Pricing</h6>
+    </div>
+    <div class="col-12 mb-3 p-0">
+      <div class="row g-2">
+        <div class="col"><input type="text" class="form-control" name="min-price" placeholder="Min Price"></div>
+        <div class="col"><input type="text" class="form-control" name="max-price" placeholder="Max Price"></div>
+      </div>
+    </div>
+
+    <!-- Bedrooms -->
+    <div class="col-12 mb-2">
+      <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Bedrooms</h6>
+    </div>
+    <div class="col-12 mb-3 p-0">
+      <ul class="select-custom gap-2">
+        <li><input type="radio" name="bedrooms" id="bed-1" hidden><label for="bed-1" class="select-btn">One</label></li>
+        <li><input type="radio" name="bedrooms" id="bed-2" hidden><label for="bed-2" class="select-btn">Two</label></li>
+        <li><input type="radio" name="bedrooms" id="bed-3" hidden><label for="bed-3" class="select-btn">Three</label></li>
+        <li><input type="radio" name="bedrooms" id="bed-4" hidden><label for="bed-4" class="select-btn">Four</label></li>
+        <li><input type="radio" name="bedrooms" id="bed-5" hidden><label for="bed-5" class="select-btn">Five</label></li>
+      </ul>
+    </div>
+
+    <!-- Area -->
+    <div class="col-12 mb-2">
+      <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Area (Sqft)</h6>
+    </div>
+    <div class="col-12 mb-3 p-0">
+      <ul class="select-custom gap-2">
+        <li><input type="radio" name="area" id="area-1" hidden><label for="area-1" class="select-btn">0-1000 sqft</label></li>
+        <li><input type="radio" name="area" id="area-2" hidden><label for="area-2" class="select-btn">1001-3000 sqft</label></li>
+        <li><input type="radio" name="area" id="area-3" hidden><label for="area-3" class="select-btn">3001-5000 sqft</label></li>
+        <li><input type="radio" name="area" id="area-4" hidden><label for="area-4" class="select-btn">5001-8000 sqft+</label></li>
+      </ul>
+    </div>
+
+    <!-- Additional Options -->
+<div class="col-12 mb-2">
+  <h6 class="fs-6 text-uppercase ls-2 fw-semibold">Amenities</h6>
+</div>
+<div class="col-12 mb-3">
+  <ul class="row row-cols-1 custom-check-box mb-20">
+    <% if (myamenities && myamenities.length > 0) { %>
+      <% myamenities.forEach(function(amenity, index) { %>
+        <li class="col">
+          <input type="checkbox" id="opt-<%= index + 1 %>" name="amenities" value="<%= amenity.amenities %>" hidden
+            <%= myproperties && myproperties.amenities && myproperties.amenities.includes(amenity.amenities) ? "checked" : "" %>>
+          <label for="opt-<%= index + 1 %>"><%= amenity.amenities %></label>
+        </li>
+      <% }) %>
+    <% } else { %>
+      <li class="col">No amenities found.</li>
+    <% } %>
+  </ul>
+</div>
+
+    <!-- Submit -->
+    <div class="col-12">
+      <button class="btn btn-primary w-100" type="submit" name="search">Search</button>
+    </div>
+  </div>
+</form>
