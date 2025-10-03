@@ -23,6 +23,7 @@ const scheduleCallSchema=new mongoose.Schema({
     },
     message:{
         type:String
-    }
+    },
+    
 })
 module.exports=mongoose.model('ScheduleCall',scheduleCallSchema);

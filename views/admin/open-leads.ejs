@@ -23,7 +23,7 @@
                                     <li class="breadcrumb-item active" aria-current="page">Open-Leads</li>
                                 </ol>
                             </nav>
-                            <h1 class="page-title">Open Leads</h1>
+                    <h1 class="page-title">Open Leads</h1>
                 </div>
 
 <div class="full-row p-3">
@@ -53,12 +53,16 @@
         <tr>
             <td><%= index + 1 %></td>
             <td><%= call.name %></td>
-            <td><%= call.name %></td>
+            <td><%= call.type %></td>
             <td><%= call.location %></td>
-            <td><%= call.createdAt %></td>
+            <td><%= call.createdAt.toLocaleDateString('en-IN', { 
+              day: '2-digit', 
+              month: 'short', 
+              year: 'numeric' 
+            }) %></td>
             <td>admin</td>
             <td class="d-flex gap-2 justify-content-center">
-                <a href="/editcall/<%= call._id %>" class="btn btn-warning btn-sm flex-fill">Select</a>
+                <a href="/editlead/<%= call._id %>" class="btn btn-warning btn-sm flex-fill">Select</a>
             </td>
         </tr>
     <% }); %>

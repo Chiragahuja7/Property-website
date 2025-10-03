@@ -1,6 +1,5 @@
 <div class="full-row p-3 bg-light-gray">
 
-    <!-- Page Banner -->
     <div class="full-row inner-page-banner pb-0 pt-2">
         <div class="container">
             <div class="row">
@@ -19,29 +18,28 @@
         </div>
     </div>
 
-    <!-- Filter Bar -->
     <div class="row mb-3">
         <div class="col">
             <div class="listing-filter-bar">
-                <div class="result-wrapper">
-                    <span class="ordering-pages">Showing <%= myproperties.length %> results</span>
+                <div class="result-wrapper pt-1">
+                    <span class="ordering-pages ps-2 ms-1">Showing <%= myproperties.filter(p => p.listingStatus === "published").length %> results
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Properties Grid -->
     <div class="row g-4">
         <% if (myproperties && myproperties.length > 0) { %>
-            <% myproperties.forEach(function(property) { %>
-                <div class="col-lg-4 col-md-6 col-12 shadow p-0">
+        <% let publishedProperties=myproperties.filter(p=>p.listingStatus==="published"); %>
+           <% if (publishedProperties.length > 0) { %>
+                <% publishedProperties.forEach(function(property) { %>  
+                  <div class="col-lg-4 col-md-6 col-12 shadow p-0">
                     <div class="property-grid-2 property-block h-100">
                         <div class="entry-wrapper">
-
-                            <!-- Thumbnail -->
                             <div class="entry-thumbnail">
                                 <div class="type">
-                                    <% if (property.status === 'For Sale') { %>
+                                    <% if (property.propertyStatus === 'Sale') { %>
                                         <span class="sale text-white">For Sale</span>
                                     <% } else { %>
                                         <span class="rent text-white">For Rent</span>
@@ -56,7 +54,6 @@
                                 </a>
                             </div>
 
-                            <!-- Content -->
                             <div class="entry-content-wrapper p-2">
                                 <div class="entry-header">
                                     <div class="post-meta">
@@ -71,9 +68,8 @@
                                 </div>
                                 <div class="entry-content">
                                     <ul class="property-info">
-                                        <li title="Beds"><span><i class="fa-solid fa-bed"></i></span><%= property.beds %></li>
-                                        <li title="Baths"><span><i class="fa-solid fa-shower"></i></span><%= property.baths %></li>
-                                        <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span><%= property.area %> Sqft</li>
+                                        <li title="Beds"><span><i class="fa-solid fa-bed"></i></span><%= property.additionalInfo %></li>
+                                        <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span><%= property.areaSquareFeetFrom %> Sqft</li>
                                     </ul>
                                 </div>
                                 <div class="entry-footer">
@@ -93,6 +89,9 @@
                 </div>
             <% }) %>
         <% } else { %>
+            <p class="text-center">No properties found.</p>
+        <% } %>
+        <%}else{%>
             <p class="text-center">No properties found.</p>
         <% } %>
     </div>

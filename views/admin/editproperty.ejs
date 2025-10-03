@@ -9,7 +9,6 @@
   <h1 class="page-title">Edit Property</h1>
 </div>
 <br><br>
-
 <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
@@ -37,14 +36,28 @@
 
     <div class="col-md-6">
       <label class="form-label">Property Type</label>
-      <input type="text" class="form-control" name="propertyType" 
-             value="<%= property.propertyType %>" required>
+      <select class="form-control text-dark" name="propertyType" required>
+      <% if (mydata && mydata.default.PROPERTY_TYPE) { %>
+      <% mydata.default. PROPERTY_TYPE.forEach(function(type) { %>
+        <option class="text-dark" value="<%= type %>" <%= property.propertyType == type ? "selected" : "" %>>
+          <%= type %>
+        </option>
+         <% }) %>
+         <% } %>
+    </select>
     </div>
 
     <div class="col-md-6">
       <label class="form-label">Property Status</label>
-      <input type="text" class="form-control" name="propertyStatus" 
-             value="<%= property.propertyStatus %>" required>
+      <select class="form-control text-dark" name="propertyStatus" required>
+      <% if (mydata && mydata.default.PROPERTY_STATUS) { %>
+      <% mydata.default. PROPERTY_STATUS.forEach(function(status) { %>
+        <option class="text-dark" value="<%= status %>" <%= property.propertyStatus == status ? "selected" : "" %>>
+          <%= status %>
+        </option>
+         <% }) %>
+         <% } %>
+    </select>
     </div>
 
     <div class="col-md-6">
@@ -62,18 +75,18 @@
 
     <div class="col-md-6">
       <label class="form-label">Price Per Sq. Feet</label>
-      <input type="text" class="form-control" name="pricePerSquareFeet" 
+      <input type="number" class="form-control" name="pricePerSquareFeet" 
              value="<%= property.pricePerSquareFeet %>" required>
     </div>
 
     <div class="col-md-6">
       <label class="form-label">Area (From Sq. Ft.)</label>
-      <input type="text" class="form-control" name="areaSquareFeetFrom" 
+      <input type="number" class="form-control" name="areaSquareFeetFrom" 
              value="<%= property.areaSquareFeetFrom %>" required>
     </div>
     <div class="col-md-6">
       <label class="form-label">Area (To Sq. Ft.)</label>
-      <input type="text" class="form-control" name="areaSquareFeetTo" 
+      <input type="number" class="form-control" name="areaSquareFeetTo" 
              value="<%= property.areaSquareFeetTo %>" required>
     </div>
 
@@ -89,12 +102,12 @@
     </div>
     <div class="col-md-6">
       <label class="form-label">Price From (Number)</label>
-      <input type="text" class="form-control" name="priceFromInNumber" 
+      <input type="number" class="form-control" name="priceFromInNumber" 
              value="<%= property.priceFromInNumber %>" required>
     </div>
     <div class="col-md-6">
       <label class="form-label">Price To (Number)</label>
-      <input type="text" class="form-control" name="priceToInNumber" 
+      <input type="number" class="form-control" name="priceToInNumber" 
              value="<%= property.priceToInNumber %>" required>
     </div>
 
@@ -110,17 +123,30 @@
     </div>
 
     <div class="col-md-6">
-      <label class="form-label">Years of Construction</label>
-      <input type="text" class="form-control" name="yearsOfConstruction" 
-             value="<%= property.yearsOfConstruction %>" required>
+    <label class="form-label">Year Of Construction</label>
+    <select class="form-control text-dark" name="yearsOfConstruction" required>
+      <% if (mydata && mydata.default.YEARS_OF_CONSTRUCTION) { %>
+      <% mydata.default.YEARS_OF_CONSTRUCTION.forEach(function(year) { %>
+        <option class="text-dark" value="<%= year %>" <%= property.yearsOfConstruction == year ? "selected" : "" %>>
+          <%= year %>
+        </option>
+         <% }) %>
+         <% } %>
+    </select>
     </div>
 
     <div class="col-md-12">
       <label class="form-label">Listing Status</label>
-      <input type="text" class="form-control" name="listingStatus" 
-             value="<%= property.listingStatus %>" required>
+      <select class="form-control text-dark" name="listingStatus" required>
+      <% if (mydata && mydata.default.LISTING_STATUS) { %>
+      <% mydata.default.LISTING_STATUS.forEach(function(status) { %>
+        <option class="text-dark" value="<%= status %>" <%= property.listingStatus == status ? "selected" : "" %>>
+          <%= status %>
+        </option>
+         <% }) %>
+         <% } %>
+    </select>
     </div>
-
   </div>
 <hr>
 <br>
@@ -128,7 +154,7 @@
     <h1 class="page-title">Property Images</h1>
     <div class="col-lg-12">
         <label>Main Image</label>
-        <input type="file" class="form-control" name="mainImage" accept="image/*">
+        <input type="file" class="form-control" name="mainImage" accept="image/*" required>
     </div>
     <% if (property.mainImage) { %>
         <div class="col-lg-12 uploaded-images mt-3">

@@ -17,6 +17,8 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const cookieParser = require('cookie-parser');
 const addproperties=require('./models/addproperty');
+const mydata=require("./models/utils");
+const leads = require('./models/leads');
 
 
 app.use(expressLayouts);
@@ -60,8 +62,11 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/',(req,res)=>{
-    res.render("index");
+app.get('/',async(req,res)=>{
+  mylocation=await addlocation.find(req.params.id)
+    res.render("index",{
+      mylocation
+    });
 })
 
 app.get('/about',(req,res)=>{
@@ -109,16 +114,18 @@ app.get('/faq',(req,res)=>{
 }); 
 
 app.get('/sell',async (req,res)=>{
-  const mycalls = await ScheduleCall.find();
+  const mylocation=await addlocation.find();
+  const myleads = await leads.find();
     res.render("contact" , {
-      mycalls
+      myleads,
+      mylocation
     });
 });
 
 app.post("/schedule-call", async (req, res) => {
   try {
-    const { name, email, contact } = req.body;
-    const newCall = new ScheduleCall({ name, email, contact });
+    const { name, email, contact ,type ,location} = req.body;
+    const newCall = new leads({ name, email, contact,type ,location });
     await newCall.save();
     res.json({ success: true, message: "Call scheduled!" });
   } catch (err) {
@@ -129,8 +136,8 @@ app.post("/schedule-call", async (req, res) => {
 
 app.post("/sell", async (req, res) => {
   try {
-    const { name, email, contact , message , address } = req.body;
-    const newCall = new ScheduleCall({ name, email, contact , message ,address });
+    const { name, email, contact , message , address ,type,location } = req.body;
+    const newCall = new leads({ name, email, contact , message ,address,type,location });
     await newCall.save();
     res.json({ success: true, message: "Call scheduled!" });
   } catch (err) {
@@ -154,8 +161,11 @@ app.get('/properties',adminAuth,async(req,res)=>{
 });
 
 app.get('/addproperties',adminAuth,async (req, res) => {
+  const mylocation=await addlocation.find();
   res.render('admin/addproperties',{
-    layout:adminLayout
+    layout:adminLayout,
+    mydata,
+    mylocation
   });
 });
 
@@ -199,7 +209,8 @@ app.get('/editproperty/:id',adminAuth, async (req, res) => {
       property,
       layout: adminLayout,
       myamenities,
-      mylocation
+      mylocation,
+      mydata
     });
   } catch (err) {
     console.error(err);
@@ -243,6 +254,16 @@ app.post("/editproperty/:id",adminAuth,upload.fields([{name:"mainImage",maxCount
   }
 });
 
+app.get("/deleteproperty/:id", adminAuth, async (req, res) => {
+  try {
+    const propertyId = req.params.id;
+    await addproperties.findByIdAndDelete(propertyId);
+    res.redirect("/properties");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 app.get('/locations',adminAuth,async (req,res)=>{
       const mylocation=await addlocation.find();
@@ -319,7 +340,6 @@ app.get("/deleteamenities/:id", adminAuth, async (req, res) => {
   }
 });
 
-
 app.get('/banks',adminAuth,async (req,res)=>{
   try{
     const mybanks=await addbank.find();
@@ -348,11 +368,39 @@ app.get('/customers',adminAuth,(req,res)=>{
 });
 
 app.get('/open-leads',adminAuth,async (req,res)=>{
-    const mycalls = await ScheduleCall.find();
+    const mycalls = await leads.find();
     res.render("admin/open-leads",{
         layout:adminLayout,
         mycalls
     });
+});
+
+app.get('/editlead/:id',adminAuth, async (req, res) => {
+  try {
+    const mylocation=await addlocation.find();
+    const mycalls = await leads.findById(req.params.id);
+    res.render("admin/editlead", {
+      mycalls,
+      layout: adminLayout,
+      mylocation,
+      mydata
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+app.post("/editagent/:id",adminAuth, async (req, res) => {
+  try {
+    const { name , location , email , contact ,status } = req.body;
+    const callId = req.params.id;
+    await addagent.findByIdAndUpdate(callId, { name, location , email , contact ,status});
+    res.json({ success: true, message: "Agent updated!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
 });
 
 app.get('/closed-leads',adminAuth,(req,res)=>{
@@ -389,9 +437,22 @@ app.post('/addlocation',adminAuth,async (req,res)=>{
   }
 })
 
-app.get('/addagent',adminAuth, (req, res) => {
+app.get("/deletelocation/:id", adminAuth, async (req, res) => {
+  try {
+    const locationId = req.params.id;
+    await addlocation.findByIdAndDelete(locationId);
+    res.redirect("/locations");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+app.get('/addagent',adminAuth,async (req, res) => {
+  const mylocation=await addlocation.find();
   res.render('admin/addagent',{
-    layout:adminLayout
+    layout:adminLayout,
+    mylocation
   });
 });
 
@@ -436,11 +497,13 @@ app.post("/addagent",adminAuth, async (req, res) => {
 
 app.get('/editagent/:id',adminAuth, async (req, res) => {
   try {
+    const mylocation=await addlocation.find();
     const agent = await addagent.findById(req.params.id);
     res.render("admin/editagent", {
       agent,
       layout: adminLayout,
-      
+      mylocation,
+      mydata
     });
   } catch (err) {
     console.error(err);
@@ -450,15 +513,24 @@ app.get('/editagent/:id',adminAuth, async (req, res) => {
 
 app.post("/editagent/:id",adminAuth, async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name , location , email , contact ,status } = req.body;
     const agentId = req.params.id;
-
-    await addagent.findByIdAndUpdate(agentId, { name });
-
+    await addagent.findByIdAndUpdate(agentId, { name, location , email , contact ,status});
     res.json({ success: true, message: "Agent updated!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
+
+app.get("/deleteagent/:id", adminAuth, async (req, res) => {
+  try {
+    const agentId = req.params.id;
+    await addagent.findByIdAndDelete(agentId);
+    res.redirect("/agents");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -502,6 +574,17 @@ app.post('/addbank',adminAuth,upload.single('upload'),async (req,res)=>{
     res.status(500).json({ success: false, message: "Error saving request" });
   }
 }) 
+
+app.get("/deletebanks/:id", adminAuth, async (req, res) => {
+  try {
+    const bankId = req.params.id;
+    await addbank.findByIdAndDelete(bankId);
+    res.redirect("/banks");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 function adminAuth(req, res, next) {
     try {

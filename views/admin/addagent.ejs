@@ -63,11 +63,18 @@
               </div>
               <div class="col-lg-12">
                 <label>location</label>
-                <input type="text" class="form-control" name="location" required>
+                <select class="form-control text-dark" name="location" required>
+                 <option class="text-dark" value="">-- Select Location --</option>
+                 <% mylocation.forEach(loc => { %>
+                 <option class="text-dark">
+                 <%= loc.location %>
+                 </option>
+                 <% }) %>
+               </select>
               </div>
               <div class="col-lg-12">
                 <label>Phone No</label>
-                <input type="tel" class="form-control" name="contact" required>
+                <input type="number" class="form-control" name="contact" required>
               </div>
               <div class="col-lg-12">
                 <label>Password</label>

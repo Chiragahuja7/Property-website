@@ -9,7 +9,6 @@
   <h1 class="page-title">Edit Agent</h1>
 </div>
 <br><br>
-
 <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
@@ -17,19 +16,43 @@
         <div class="contact-form">
           <form  method="POST" id="editagent" action="/editagent/<%= agent._id %>">
             <div class="row align-items-center mb-3">
-              <div class="col-auto">
+              <div class="col-lg-6">
                 <label class="mb-0 color-dark">Name of Agent</label>
+                <input type="text" class="form-control" name="agent" value="<%= agent.name %>"required>      
               </div>
-              <div class="mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="agent"
-                  value="<%= agent.name %>"
-                  required
-                >
+              <div class="col-lg-6">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" value="<%= agent.email %>" required>
+              </div>
+              <div class="col-lg-6">
+                <label>location</label>
+                <select class="form-control text-dark" name="location" value="<%= agent.location %>" required>
+                 <option class="text-dark" value="">-- Select Location --</option>
+                 <% mylocation.forEach(loc => { %>
+                 <option class="text-dark" value="<%= loc.location %>" 
+                 <%= agent.location === loc.location ? "selected" : "" %>>
+                 <%= loc.location %>
+                 </option>
+                 <% }) %>
+               </select>
+              </div>
+              <div class="col-lg-6">
+                <label>Status</label>
+                <select class="form-control text-dark" name="status" required>
+                <% if (mydata && mydata.default.AGENT_STATUS) { %>
+                <% mydata.default.AGENT_STATUS.forEach(function(status) { %>
+                  <option class="text-dark" value="<%= status %>" <%= agent.status == status ? "selected" : "" %>>
+                    <%= status %>
+                  </option>
+                   <% }) %>
+                   <% } %>
+              </select>
               </div>
               <div class="col-lg-12">
+                <label>Phone No</label>
+                <input type="number" class="form-control" name="contact"  value="<%= agent.contact %>" required>
+              </div>
+              <div class="col-lg-12 mt-3">
                 <button type="submit" class="btn btn-primary">
                   Update Agent
                 </button>
@@ -42,6 +65,10 @@
 
               const formData = {
                 name: this.agent.value,
+                email:this.email.value,
+                contact:this.contact.value,
+                location:this.location.value,
+                status:this.status.value
               };
 
               try {

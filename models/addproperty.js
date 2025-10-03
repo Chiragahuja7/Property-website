@@ -85,16 +85,14 @@ const addproperties=new mongoose.Schema({
         required:true
     },
     builderDescription:{
-        type:String,
-        required:true
+        type:String
     },
     nearbyPlaces:{
         type:[String],
         default:[]
     },
     mainImage:{
-        type:String,
-        required:true
+        type:String
     }
 })
 module.exports=mongoose.model('addproperties',addproperties);

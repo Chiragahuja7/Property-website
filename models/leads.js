@@ -16,7 +16,7 @@ const leads=new mongoose.Schema({
     },
     createdAt:{
         type:Date,
-        default:Date.now
+        default: () => new Date().toISOString().split('T')[0]
     },
     address:{
         type:String,
@@ -34,6 +34,14 @@ const leads=new mongoose.Schema({
     },
     property:{
         type:String,
+    },
+    type:{
+        type:String,
+        default:"Intrested"
+    },
+    location:{
+        type:String,
+        required:true
     }
 
 })

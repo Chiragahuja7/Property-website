@@ -1,0 +1,63 @@
+<div class="page-title-wrapper d-lg-flex flex-column gap-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0 bg-transparent p-0">
+      <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="/leads">Leads</a></li>
+      <li class="breadcrumb-item"><a href="/open-leads">Open-leads</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Edit lead</li>
+    </ol>
+  </nav>
+  <h1 class="page-title">Edit Lead</h1>
+</div>
+<br><br>
+<div class="full-row pt-0">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <div class="contact-form">
+          <form  method="POST" id="editagent" action="/editlead/<%= mycalls._id %>">
+            <div class="row align-items-center mb-3">
+              <div class="col-lg-6">
+                <label class="mb-0 color-dark">Name</label>
+                <input type="text" class="form-control" name="status" value="<%= mycalls.name %>"required>      
+              </div>
+              <div class="col-lg-12 mt-3">
+                <button type="submit" class="btn btn-primary">
+                  Update Lead
+                </button>
+              </div>
+            </div>
+          </form>
+          <script>
+            document.getElementById("editlead").addEventListener("submit", async function (e) {
+              e.preventDefault();
+
+              const formData = {
+                status:this.status.value
+              };
+
+              try {
+                const res = await fetch(`/editlead/<%= mycalls._id %>`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                  alert("Lead updated! ✅");
+                  window.location.href = "/leads";
+                } else {
+                  alert("Something went wrong ❌");
+                }
+              } catch (err) {
+                console.error(err);
+                alert("Server error!");
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

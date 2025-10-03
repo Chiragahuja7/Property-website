@@ -30,15 +30,34 @@
               </div>
               <div class="col-lg-6">
                 <label>Property Type</label>
-                <input type="text" class="form-control" name="propertyType" required>
+                <select class="form-control" name="propertyType" required>
+                 <% if (mydata && mydata.default.PROPERTY_TYPE) { %>
+                   <% mydata.default.PROPERTY_TYPE.forEach(function(type) { %>
+                     <option class="text-dark"  value="<%= type %>"><%= type %></option>
+                   <% }) %>
+                 <% } %>
+               </select>
               </div>
               <div class="col-lg-6">
                 <label>Property Status</label>
-                <input type="text" class="form-control" name="propertyStatus" required>
+                <select class="form-control" name="propertyStatus" required>
+                 <% if (mydata && mydata.default.PROPERTY_STATUS) { %>
+                   <% mydata.default.PROPERTY_STATUS.forEach(function(status) { %>
+                     <option class="text-dark" value="<%= status %>"><%= status %></option>
+                   <% }) %>
+                 <% } %>
+               </select>
               </div>
               <div class="col-lg-6">
                 <label> Location</label>
-                <input type="text" class="form-control" name="location" required>
+                <select class="form-control text-dark" name="location" required>
+                 <option class="text-dark" value="">-- Select Location --</option>
+                 <% mylocation.forEach(loc => { %>
+                 <option class="text-dark">
+                 <%= loc.location %>
+                 </option>
+                 <% }) %>
+               </select>
               </div>
               <div class="col-lg-6">
                 <label>Price Per Sq Feet</label>
@@ -77,12 +96,26 @@
                 <input type="text" class="form-control" name="videoUrl" required>
               </div>
               <div class="col-lg-6">
-                <label>Years Of Construction</label>
-                <input type="number" class="form-control" name="yearsOfConstruction" required>
-              </div>
+               <label>Year Of Construction</label>
+               <select class="form-control" name="yearsOfConstruction" required>
+                 <% if (mydata && mydata.default.YEARS_OF_CONSTRUCTION) { %>
+                   <% mydata.default.YEARS_OF_CONSTRUCTION.forEach(function(year) { %>
+                     <option class="text-dark"  value="<%= year %>"><%= year %></option>
+                   <% }) %>
+                 <% } %>
+               </select>
+             </div>
               <div class="col-lg-12">
                 <label>Listing Status</label>
-                <input type="text" class="form-control" name="listingStatus" required>
+               <select class="form-control text-dark" name="listingStatus" required>
+               <% if (mydata && mydata.default.LISTING_STATUS) { %>
+               <% mydata.default.LISTING_STATUS.forEach(function(status) { %>
+                 <option class="text-dark">
+                   <%= status %>
+                 </option>
+                  <% }) %>
+                  <% } %>
+              </select>
               </div>
               <div class="col-lg-12">
                 <button type="submit" class="btn btn-primary">SAVE</button>
