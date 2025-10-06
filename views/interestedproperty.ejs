@@ -1,0 +1,139 @@
+  <div id="page_wrapper" class="bg-light-gray">
+        <!--============== Property Details Start ==============-->
+        <div class="full-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="single-property-page property-block">
+                            <div class="entry-single-wrapper">
+                                <div class="entry-single-header">
+                                    <div class="page-title-wrapper d-flex flex-column">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb mb-0 bg-transparent p-0">
+                                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="/browse">Browse</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Property Info</li>
+                                            </ol>
+                                        </nav>
+                                        <h1 class="entry-single-title"><%=property.propertyName%></h1>
+                                        <span class="listing-location"><i class="fas fa-map-marker-alt me-2"></i><%=property.location%></span>
+                                        <div class="type"><span class="rent text-white">For <%=property.propertyStatus%></span></div>
+                                    </div>
+                                    <div class="entry-property-price-wrapper mt-5">
+                                        <span class="listing-price">₹<%=property.priceFromInNumber%><small> / Fixed</small></span>
+                                    </div>
+                                </div>
+                                <div class="entry-single-thumbnail mb-4">
+                                <div id="single-property" class="w-100 position-relative">
+                                    <img src="<%=property.mainImage || '/assets/images/landing_bg.png'%>"
+                                         class="img-fluid rounded w-100"
+                                         alt="Property image"
+                                         style="object-fit: cover; max-height: 500px;">
+                                </div>
+                               </div>
+                                <div class="entry-single-content-wrapper">
+                                    <div class="row g-4">
+                                        <div class="col-lg-8">
+                                            <div class="single-content-wrapper">
+                                                <div class="single-property-overview">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Overview</h4>
+                                                    <ul class="property-info">
+                                                        <li><span>BHK:</span><%=property.additionalInfo%></li>
+                                                        <li><span>Area From:</span><%=property.areaSquareFeetFrom%><sup>2</sup></li>
+                                                        <li><span>Area To:</span><%=property.areaSquareFeetTo%><sup>2</sup></li>
+                                                        <li><span>Year Of Construction:</span><%=property.yearsOfConstruction%></li>
+                                                        <li><span>Price In Words (From):</span><%=property.priceFromInWords%></li>
+                                                        <li><span>Price In Words (To):</span><%=property.priceToInWords%></li>
+                                                        <li><span>Type :</span><%=property.propertyType%> </li>
+                                                        <li><span>Installment Facility :</span> Yes</li>
+                                                        <li><span>Insurance :</span> Yes</li>
+                                                    </ul>
+                                                    
+                                                </div>
+                                                <div class="single-property-description">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Description</h4>
+                                                    <p><%=property.description%></p></p>
+                                                </div>
+                                                <div class="single-property-details">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Address</h4>
+                                                    <ul class="property-address">
+                                                        <li><span>Address :</span><%=property.address%></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="single-property-details">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Property Features</h4>
+                                                    <ul class="property-feature list-style">
+                                                        <li>Parking Facility</li>
+                                                        <li>Green Park View</li>
+                                                        <li>Playground Include</li>
+                                                        <li>Garden</li>
+                                                        <li>Kitchen Furniture</li>
+                                                        <li>Fire Security</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="single-property-details">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Video Prasentation</h4>
+                                                    <div class="mt-md-30 mb-30 position-relative">
+                                                        <img src="/assets/images/landing_bg.png" alt="real estate template">
+                                                        <div class="simple-video-play d-flex position-absolute top-50 start-50 translate-middle">
+                                                            <div class="position-relative d-inline-block">
+                                                                <a data-fancybox="" href="<%=property.videoUrl%>" class="rounded-circle position-relative bg-primary" style="z-index: 10">
+                                                                    <i class="fa-solid fa-play color-white position-relative top-50 start-50 translate-middle"></i>
+                                                                </a>
+                                                                <div class="loader position-absolute top-50 start-50 translate-middle">
+                                                                    <div class="loader-inner ball-scale-multiple">
+                                                                        <div class="bg-primary"></div>
+                                                                        <div class="bg-primary"></div>
+                                                                    </div><span class="tooltip">
+                                                                  <b>ball-scale-multiple</b></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Use youtube or Vimeo video link in href, first open the video and just copy the link from url and past here -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="single-property-sidebar">
+                                                <div class="contact-with-agent">
+                                                    <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Listing Agent</h4>
+                                                    <div class="single-agent-info">
+                                                        <div class="agent-block">
+                                                            <h5 class="agent-name fs-6 color-dark ls-1 mb-1">Admin</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=============== Property Details End ===============-->
+        <!--============== Copyright Section Start ==============-->
+        <div class="copyright font-primary py-3">
+            <div class="container">
+                <div class="row row-cols-md-2 row-cols-1">
+                    <div class="col">
+                        <p class="color-white mb-0">©2023 Uniland All right reserved</p>
+                    </div>
+                    <div class="col">
+                        <ul class="bottom-footer-nav list-color-gray">
+                            <li><a href="/faq">Privacy & Policy </a></li>
+                            <li>|</li>
+                            <li><a href="/faq">Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--============== Copyright Section End ==============-->
+    </div>
+
+    <!-- Scroll to top -->
+    <div class="scroll-top-vertical xs-mx-none" id="scroll">Back to top <i class="ms-2 fa-solid fa-arrow-right-long"></i></div>

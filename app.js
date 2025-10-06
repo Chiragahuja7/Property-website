@@ -79,15 +79,53 @@ app.get('/our-mission',(req,res)=>{
 
 app.get('/browse', async (req, res) => {
   try {
+    const mylocation=await addlocation.find();
     const myamenities = await addamenities.find();
     const myproperties = await addproperties.find();
-    res.render('browse', { myproperties,myamenities ,layout:browseLayout});
+    res.render('browse', { myproperties,myamenities ,mylocation,layout:browseLayout});
   } catch (err) {
     console.error(err);
     res.render('browse', { myproperties: [] });
   }
 });
 
+app.post('/browse', async (req, res) => {
+  try {
+    const { location, propertyStatus, propertyType ,additionalInfo,amenities } = req.body;
+    let query = {};
+
+    if (location) {
+      query.location = location;
+    }
+    if (propertyStatus) {
+      query.propertyStatus = propertyStatus;
+    }
+    if (propertyType) {
+      query.propertyType = propertyType;
+    }
+    if (additionalInfo) {
+      query.additionalInfo = additionalInfo;
+    }
+    if (amenities) {
+      query.amenities = amenities;
+    }
+
+    const myproperties = await addproperties.find(query);
+    const mylocation = await addlocation.find(); 
+    const myamenities = await addamenities.find();
+    console.log(query);
+
+    res.render('browse', {
+      myproperties, 
+      myamenities,
+      mylocation,
+      layout: browseLayout 
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Error applying filter" });
+  }
+});
 
 app.get('/career',(req,res)=>{
     res.render("career");
@@ -590,7 +628,7 @@ function adminAuth(req, res, next) {
     try {
         const token = req.cookies?.token;
         if (!token) {
-            return res.status(401).json({ message: "No token, access denied" });
+            return res.redirect("/login");
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret");
@@ -717,4 +755,13 @@ app.get('/search', async (req, res) => {
     }
 
     res.send("No results found.");
+});
+
+app.get('/property/:id',async (req, res) => {
+  const mylocation=await addlocation.find();
+  const property = await addproperties.findById(req.params.id);
+  res.render('interestedproperty',{
+    mylocation,
+    property,
+  });
 });

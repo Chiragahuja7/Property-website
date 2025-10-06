@@ -1,5 +1,12 @@
-<div class="full-row p-3 bg-light-gray">
+<style>
+.property-img {
+  width: 100%;
+  height: 180px;
+  object-fit:cover;
+}
+</style>
 
+<div class="full-row p-3 bg-light-gray">
     <div class="full-row inner-page-banner pb-0 pt-2">
         <div class="container">
             <div class="row">
@@ -8,7 +15,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 bg-transparent p-0">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Browse</li>
+                                <li class="breadcrumb-item"><a href="/browse">Browse</a></li>
                             </ol>
                         </nav>
                         <h1 class="page-title">Browse Properties</h1>
@@ -34,10 +41,10 @@
         <% let publishedProperties=myproperties.filter(p=>p.listingStatus==="published"); %>
            <% if (publishedProperties.length > 0) { %>
                 <% publishedProperties.forEach(function(property) { %>  
-                  <div class="col-lg-4 col-md-6 col-12 shadow p-0">
+                  <div class="col-lg-4 col-md-6 col-12 shadow p-0 card">
                     <div class="property-grid-2 property-block h-100">
                         <div class="entry-wrapper">
-                            <div class="entry-thumbnail">
+                            <div class="entry-thumbnail max-height-180px">
                                 <div class="type">
                                     <% if (property.propertyStatus === 'Sale') { %>
                                         <span class="sale text-white">For Sale</span>
@@ -49,10 +56,10 @@
                                     <i class="fa-regular fa-calendar-days"></i>
                                     <span><%= property.createdAt ? property.createdAt.toDateString() : '' %></span>
                                 </div>
-                                <a href="/property/<%= property._id %>" class="entry-thumbnail-image">
-                                    <img src="<%= property.mainImage || '/assets/images/property/default.png' %>" alt="Property Image" class="img-fluid">
+                                <a href="/property/<%= property._id %>" class="entry-thumbnail-image property-img">
+                                    <img src="<%= property.mainImage || '/assets/images/landing_bg.png' %>" alt="Property Image"class="img-fluid property-img" >
                                 </a>
-                            </div>
+                                </div>
 
                             <div class="entry-content-wrapper p-2">
                                 <div class="entry-header">
@@ -74,7 +81,7 @@
                                 </div>
                                 <div class="entry-footer">
                                     <span class="listing-price">
-                                        $<%= property.priceFromInNumber %>
+                                        ₹<%= property.priceFromInNumber %>
                                         <% if (property.status === 'For Rent') { %>
                                             <small> / mo</small>
                                         <% } else { %>

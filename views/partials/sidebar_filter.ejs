@@ -1,4 +1,21 @@
-<form action="#" method="POST" class="quick-search slide-filter form-icon-right p-1">
+<style>
+.select-custom input[type="checkbox"]:checked + label.select-btn {
+  background-color: #AA8453;
+  color: #fff;
+  border-color: #AA8453;
+}
+
+.select-custom label.select-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+</style>
+
+<form action="/browse" method="POST" class="quick-search slide-filter form-icon-right p-1">
   <div class="row">
     <!-- Location -->
     <div class="col-12 mb-2">
@@ -6,7 +23,14 @@
     </div>
     <div class="col-12 mb-3">
       <div class="position-relative">
-        <input type="text" class="form-control" name="location" placeholder="Location">
+        <select class="form-control text-dark" name="location">
+                 <option class="text-dark" value="">-- Select Location --</option>
+                 <% mylocation.forEach(loc => { %>
+                 <option class="text-dark">
+                 <%= loc.location %>
+                 </option>
+                 <% }) %>
+               </select>
         <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
       </div>
     </div>
@@ -17,12 +41,12 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2 pl-1 pr-1">
-        <li><input type="radio" name="property-type" id="ptype-house" hidden><label for="ptype-house" class="select-btn">House</label></li>
-        <li><input type="radio" name="property-type" id="ptype-office" hidden><label for="ptype-office" class="select-btn">Office</label></li>
-        <li><input type="radio" name="property-type" id="ptype-apartment" hidden><label for="ptype-apartment" class="select-btn">Apartment</label></li>
-        <li><input type="radio" name="property-type" id="ptype-condos" hidden><label for="ptype-condos" class="select-btn">Condos</label></li>
-        <li><input type="radio" name="property-type" id="ptype-villa" hidden><label for="ptype-villa" class="select-btn">Villa</label></li>
-      </ul>
+  <li><input type="checkbox" value="House" name="propertyType[]" id="House" hidden><label for="House" class="select-btn">House</label></li>
+  <li><input type="checkbox" value="Office" name="propertyType[]" id="Office" hidden><label for="Office" class="select-btn">Office</label></li>
+  <li><input type="checkbox" value="Apartment" name="propertyType[]" id="Apartment" hidden><label for="Apartment" class="select-btn">Apartment</label></li>
+  <li><input type="checkbox" value="Condos" name="propertyType[]" id="Condos" hidden><label for="Condos" class="select-btn">Condos</label></li>
+  <li><input type="checkbox" value="Villa" name="propertyType[]" id="Villa" hidden><label for="Villa" class="select-btn">Villa</label></li>
+</ul>
     </div>
 
     <!-- Property Status -->
@@ -31,8 +55,8 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="radio" name="property-status" id="pstatus-sale" hidden><label for="pstatus-sale" class="select-btn">For Sale</label></li>
-        <li><input type="radio" name="property-status" id="pstatus-rent" hidden><label for="pstatus-rent" class="select-btn">For Rent</label></li>
+        <li><input type="checkbox" value="Sale" name="propertyStatus[]" id="Sale" hidden><label for="Sale" class="select-btn">For Sale</label></li>
+        <li><input type="checkbox" value="Rent" name="propertyStatus[]" id="Rent" hidden><label for="Rent" class="select-btn">For Rent</label></li>
       </ul>
     </div>
 
@@ -53,12 +77,12 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="radio" name="bedrooms" id="bed-1" hidden><label for="bed-1" class="select-btn">One</label></li>
-        <li><input type="radio" name="bedrooms" id="bed-2" hidden><label for="bed-2" class="select-btn">Two</label></li>
-        <li><input type="radio" name="bedrooms" id="bed-3" hidden><label for="bed-3" class="select-btn">Three</label></li>
-        <li><input type="radio" name="bedrooms" id="bed-4" hidden><label for="bed-4" class="select-btn">Four</label></li>
-        <li><input type="radio" name="bedrooms" id="bed-5" hidden><label for="bed-5" class="select-btn">Five</label></li>
-      </ul>
+       <li><input type="checkbox" value="1bhk" name="additionalInfo[]" id="1Bhk" hidden><label for="1Bhk" class="select-btn">One</label></li>
+       <li><input type="checkbox" value="2bhk" name="additionalInfo[]" id="2Bhk" hidden><label for="2Bhk" class="select-btn">Two</label></li>
+       <li><input type="checkbox" value="3bhk" name="additionalInfo[]" id="3Bhk" hidden><label for="3Bhk" class="select-btn">Three</label></li>
+       <li><input type="checkbox" value="4bhk" name="additionalInfo[]" id="4Bhk" hidden><label for="4Bhk" class="select-btn">Four</label></li>
+       <li><input type="checkbox" value="5bhk" name="additionalInfo[]" id="5Bhk" hidden><label for="5Bhk" class="select-btn">Five</label></li>
+     </ul>
     </div>
 
     <!-- Area -->
@@ -67,10 +91,10 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="radio" name="area" id="area-1" hidden><label for="area-1" class="select-btn">0-1000 sqft</label></li>
-        <li><input type="radio" name="area" id="area-2" hidden><label for="area-2" class="select-btn">1001-3000 sqft</label></li>
-        <li><input type="radio" name="area" id="area-3" hidden><label for="area-3" class="select-btn">3001-5000 sqft</label></li>
-        <li><input type="radio" name="area" id="area-4" hidden><label for="area-4" class="select-btn">5001-8000 sqft+</label></li>
+        <li><input type="checkbox" value="0-1000" name="area[]" id="area-1" hidden><label for="area-1" class="select-btn">0-1000</label></li>
+        <li><input type="checkbox" value="1001-3000" name="area[]" id="area-2" hidden><label for="area-2" class="select-btn">1001-3000</label></li>
+        <li><input type="checkbox" value="3001-5000" name="area[]" id="area-3" hidden><label for="area-3" class="select-btn">3001-5000</label></li>
+        <li><input type="checkbox" value="5001-8000+" name="area[]" id="area-4" hidden><label for="area-4" class="select-btn">5001-8000+</label></li>
       </ul>
     </div>
 

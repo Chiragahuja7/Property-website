@@ -154,7 +154,7 @@
     <h1 class="page-title">Property Images</h1>
     <div class="col-lg-12">
         <label>Main Image</label>
-        <input type="file" class="form-control" name="mainImage" accept="image/*" required>
+        <input type="file" class="form-control" name="mainImage" accept="image/*">
     </div>
     <% if (property.mainImage) { %>
         <div class="col-lg-12 uploaded-images mt-3">
@@ -197,7 +197,7 @@
       <div class="form-check">
         <% myamenities.forEach(function(amenity) { %>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="amenities" value="<%= amenity._id %>"
+            <input class="form-check-input" type="checkbox" name="amenities" value="<%= amenity.amenities %>"
              <% if (property.amenities && property.amenities.includes(amenity._id.toString())) { %> checked <% } %>>
             <label class="form-check-label"><%= amenity.amenities %></label>
           </div>
