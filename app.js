@@ -5,7 +5,6 @@ const app = express()
 const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 const expressLayouts=require("express-ejs-layouts")
-const ScheduleCall=require('./models/ScheduleCall');
 const bodyParser = require("body-parser");
 const addlocation=require('./models/addlocation');
 const addagent=require('./models/addagent');
@@ -19,7 +18,6 @@ const cookieParser = require('cookie-parser');
 const addproperties=require('./models/addproperty');
 const mydata=require("./models/utils");
 const leads = require('./models/leads');
-
 
 app.use(expressLayouts);
 app.set('layout',"layouts/main");
@@ -61,6 +59,31 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(async (req, res, next) => {
+  try {
+    const locations = await addlocation.find();
+    res.locals.mylocation = locations;
+    const token = req.cookies.token;
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret");
+        const user = await addagent.findById(decoded.id);
+        res.locals.user = user;
+        req.user = user; 
+      } catch (err) {
+        console.error("Invalid token:", err.message);
+        res.locals.user = null;
+      }
+    } else {
+      res.locals.user = null;
+    }
+  } catch (err) {
+    console.error(err);
+    res.locals.mylocation = [];
+    res.locals.user = null;
+  }
+  next();
+});
 
 app.get('/',async(req,res)=>{
   mylocation=await addlocation.find(req.params.id)
@@ -184,9 +207,21 @@ app.post("/sell", async (req, res) => {
   }
 });
 
-app.get('/admin',adminAuth ,(req,res)=>{
+app.post("/interested", async (req, res) => {
+  try {
+    const { name, email, contact ,type ,location} = req.body;
+    const newCall = new leads({ name, email, contact,type ,location });
+    await newCall.save();
+    res.json({ success: true, message: "Call scheduled!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Error saving request" });
+  }
+});
+
+app.get('/admin',adminAuth ,async(req,res)=>{
     res.render("admin/dashboard",{
-        layout:adminLayout
+        layout:adminLayout,
     });
 });
 
@@ -311,7 +346,7 @@ app.get('/locations',adminAuth,async (req,res)=>{
     });
 });
 
-app.get('/agents',adminAuth,async(req,res)=>{
+app.get('/agents',isAdminMiddleware,adminAuth,async(req,res)=>{
     const myagents = await addagent.find();
     res.render("admin/agent",{
       myagents,
@@ -416,16 +451,33 @@ app.get('/open-leads',adminAuth,async (req,res)=>{
 app.get('/editlead/:id',adminAuth, async (req, res) => {
   try {
     const mylocation=await addlocation.find();
+    const agents = await addagent.find();
     const mycalls = await leads.findById(req.params.id);
     res.render("admin/editlead", {
       mycalls,
       layout: adminLayout,
       mylocation,
-      mydata
+      mydata,
+      agents
     });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
+  }
+});
+
+app.post('/editlead/:id', async (req, res) => {
+  try {
+    const { name, assignedAgent, leadStatus } = req.body;
+    await leads.findByIdAndUpdate(req.params.id, {
+      name,
+      assignedAgent,
+      leadStatus
+    });
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.json({ success: false });
   }
 });
 
@@ -441,15 +493,19 @@ app.post("/editagent/:id",adminAuth, async (req, res) => {
   }
 });
 
-app.get('/closed-leads',adminAuth,(req,res)=>{
+app.get('/closed-leads',adminAuth,async(req,res)=>{
+    const mycalls = await leads.find();
     res.render("admin/closed-leads",{
-        layout:adminLayout
+        layout:adminLayout,
+        mycalls
     });
 });
 
-app.get('/lost-leads',adminAuth,(req,res)=>{
+app.get('/lost-leads',adminAuth,async(req,res)=>{
+    const mycalls = await leads.find();
     res.render("admin/lost-leads",{
-        layout:adminLayout
+        layout:adminLayout,
+        mycalls
     });
 });
 
@@ -630,12 +686,7 @@ function adminAuth(req, res, next) {
         if (!token) {
             return res.redirect("/login");
         }
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret");
-        if (!decoded.isAdmin) {
-            return res.status(403).json({ message: "Admin only" });
-        }
-
         req.user = decoded;
         next();
     } catch (err) {
@@ -643,35 +694,51 @@ function adminAuth(req, res, next) {
     }
 }
 
+function isAdminMiddleware(req, res, next) {
+  try {
+    console.log(req.user);
+    if (!req.user) {
+      return res.status(403).send("Access denied: Admins only");
+    }
+    if (!req.user.isAdmin) {
+      return res.status(403).send("Access denied: Admins only");
+    }
+    next();
+  } catch (error) {
+    console.error("Admin check failed:", error);
+    res.status(500).send("Server error while checking admin status");
+  }
+}
+
 app.get('/login', (req, res) => {
-  res.render('login',{
-  });
+  res.render('login',{ alert: null });
 });
 
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
-
-        const user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ success: false, message: "Invalid credentials" });
-
+        const user = await addagent.findOne({ email });
+        if (!user) {
+            return res.render("login", { alert: "User not found!" });
+        }
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ success: false, message: "Invalid credentials" });
-
+        if (!isMatch) {
+            return res.render("login", { alert: "Invalid credentials!" });
+        }
         const token = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
             process.env.JWT_SECRET || "your_jwt_secret",
-            { expiresIn: "1h" }
+            { expiresIn: "10h" }
         );
         res.cookie("token", token, { httpOnly: true });
-        if(user.isAdmin){
+        if (user.isAdmin) {
             res.redirect("/admin");
-        }else{
-            res.redirect("/agentdashboard");
+        } else {
+            res.redirect("/admin");
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Server error" });
+        res.render("login", { alert: "Server error, please try again" });
     }
 });
 
@@ -753,6 +820,30 @@ app.get('/search', async (req, res) => {
             layout:adminLayout
         });
     }
+    if (type === "open-leads") {
+        results = await leads.find({
+            name: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/open-leads', { mycalls: results ,
+            layout:adminLayout
+        });
+    }
+    if (type === "closed-leads") {
+        results = await leads.find({
+            name: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/closed-leads', { mycalls: results ,
+            layout:adminLayout
+        });
+    }
+    if (type === "lost-leads") {
+        results = await leads.find({
+            name: { $regex: query, $options: "i" }
+        });
+        return res.render('admin/lost-leads', { mycalls: results ,
+            layout:adminLayout
+        });
+    }
 
     res.send("No results found.");
 });
@@ -760,8 +851,17 @@ app.get('/search', async (req, res) => {
 app.get('/property/:id',async (req, res) => {
   const mylocation=await addlocation.find();
   const property = await addproperties.findById(req.params.id);
+  const mybanks=await addbank.find();
   res.render('interestedproperty',{
     mylocation,
     property,
+    mybanks
   });
+});
+
+app.get("/logout", (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+    });
+    res.redirect("/login");
 });

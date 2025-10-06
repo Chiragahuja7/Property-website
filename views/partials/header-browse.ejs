@@ -54,65 +54,84 @@
                                        data-bs-target="#scheduleCallModal">
                                        + Schedule a call
                                     </a>
-                                    <div class="modal fade " id="scheduleCallModal" tabindex="-1" aria-labelledby="scheduleCallLabel">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content rounded-3 shadow">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="scheduleCallLabel">Schedule a Call</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <form id="scheduleCallForm">
-                                              <div class="mb-3">
-                                                <label class="form-label">Full Name</label>
-                                                <input type="text" class="form-control" name="name" required>
-                                              </div>
-                                              <div class="mb-3">
-                                                <label class="form-label">Email address</label>
-                                                <input type="email" class="form-control" name="email" required>
-                                              </div>
-                                              <div class="mb-3">
-                                                <label class="form-label">Contact Number</label>
-                                                <input type="tel" class="form-control" name="contact" required>
-                                              </div>
-                                              <button type="submit" class="btn btn-primary w-100">Submit</button>
-                                            </form>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <script>
-                                    document.getElementById("scheduleCallForm").addEventListener("submit", async function(e) {
-                                      e.preventDefault();
-  
-                                      const formData = {
-                                        name: this.name.value,
-                                        email: this.email.value,
-                                        contact: this.contact.value
-                                      };
+<div class="modal fade" id="scheduleCallModal" tabindex="-1" aria-labelledby="scheduleCallLabel">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-3 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="scheduleCallLabel">Schedule a Call</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="scheduleCallForm">
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contact Number</label>
+            <input type="number" class="form-control" name="contact" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Location</label>
+            <select class="form-control text-dark" type="location" name="location" required>
+                 <option class="text-dark" value="">-- Select Location --</option>
+                 <% mylocation.forEach(loc => { %>
+                 <option class="text-dark">
+                 <%= loc.location %>
+                 </option>
+                 <% }) %>
+               </select>
+          </div>
+          <input type="hidden" name="type" value="Call Scheduled">
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-                                      try {
-                                        const res = await fetch("/schedule-call", {
-                                          method: "POST",
-                                          headers: { "Content-Type": "application/json" },
-                                          body: JSON.stringify(formData)
-                                        });
-    
-                                        const data = await res.json();
-                                        if (data.success) {
-                                          alert("Your request has been saved! ✅");
-                                          this.reset();
-                                          const modal = bootstrap.Modal.getInstance(document.getElementById("scheduleCallModal"));
-                                          modal.hide();
-                                        } else {
-                                          alert("Something went wrong ❌");
-                                        }
-                                      } catch (err) {
-                                        console.error(err);
-                                        alert("Server error!");
-                                      }
-                                    });
-                                    </script>
+<script>
+document.getElementById("scheduleCallForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = {
+    name: this.name.value,
+    email: this.email.value,
+    contact: this.contact.value,
+    type:this.type.value,
+    location:this.location.value
+  };
+
+  try {
+    const res = await fetch("/schedule-call", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      alert("Your request has been saved! ✅");
+      this.reset();
+      var myModalEl = document.getElementById("scheduleCallModal");
+      var modal = bootstrap.Modal.getInstance(myModalEl);
+      if (!modal) modal = new bootstrap.Modal(myModalEl);
+      document.activeElement.blur();
+      modal.hide();
+      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+    } else {
+      alert("Something went wrong ❌");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("model!");
+  }
+});
+</script>
                                 </div>
                             </nav>
                         </div>

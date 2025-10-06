@@ -1,6 +1,10 @@
 <div class="left-sidebar-block bg-dark p-0">
     <a href="/admin" class="dashboard-logo text-decoration-none">
+        <%if(user.isAdmin){%>
        <h4 class="logo">Admin Panel</h4>
+       <%}else{%>
+        <h4 class="logo">Agent Panel</h4>
+        <%}%>
     </a>
     <nav class="dashboard-nav nav-light pb-3" id="navbarSupportedContent">
         <ul class="navbar-nav left-collaps-nav">
@@ -12,7 +16,9 @@
                 <a class="nav-link" href="/properties"><i class="fa-solid fa-house"></i> My Properties</a>
             </li>
             <li class="nav-item <%= currentPath.startsWith('/locations') ? 'active' : '' %>"><a class="nav-link" href="/locations"><i class="fa-solid fa-heart"></i> Locations</a></li>
+            <%if(user.isAdmin){%>
             <li class="nav-item <%= currentPath.startsWith('/agents') ? 'active' : '' %>"><a class="nav-link" href="/agents"><i class="fa-solid fa-user"></i> Agents</a></li>
+            <%}%>
             <li class="nav-item <%= currentPath.startsWith('/leads') ? 'active' : '' %>"><a class="nav-link" href="/leads"><i class="fa-solid fa-star"></i> Leads</a></li>
             <li class="nav-item <%= currentPath.startsWith('/amenities') ? 'active' : '' %>"><a class="nav-link" href="/amenities"><i class="fa-solid fa-paper-plane"></i> Amenities</a></li>
             <li class="nav-item <%= currentPath.startsWith('/banks') ? 'active' : '' %>"><a class="nav-link" href="/banks"><i class="fa-solid fa-star"></i> Banks</a></li>
@@ -20,7 +26,7 @@
             <li class="nav-item <%= currentPath.startsWith('/customers') ? 'active' : '' %>"><a class="nav-link" href="/customers"><i class="fa-solid fa-user"></i> Customers</a></li>
             
             <h5 class="dashboard-nav-title">Account Settings</h5>
-            <li class="nav-item"><a class="nav-link" href="/"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout" onclick="return confirm('Are you sure you want to logout');"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
         </ul>
     </nav>
 </div>

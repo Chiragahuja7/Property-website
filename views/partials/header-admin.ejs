@@ -9,7 +9,11 @@
                             <ul class="navbar-nav user-option">
                                 <li class="nav-item"></li>
                                 <li class="nav-item">
+                                    <%if(user.isAdmin){%>
                                     <a class="nav-link" href="#"><img src="/assets/images/user1.jpg" alt=""> Hi, Admin</a>
+                                    <%}else{%>
+                                        <a class="nav-link" href="#"><img src="/assets/images/user1.jpg" alt=""> Hi, Agent</a>
+                                    <%}%>
                                 </li>
                             </ul>
                         </div>

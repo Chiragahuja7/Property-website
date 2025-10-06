@@ -1,12 +1,10 @@
-<div id="pagination"></div>
-
+<div id="pagination" class="d-flex justify-content-center my-3"></div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector("#paginated-container"); // container with items
+    const container = document.querySelector("tbody");
     if (!container) return;
-
-    const items = Array.from(container.children); // all child elements
-    const perPage = 5; // items per page
+    const items = Array.from(container.querySelectorAll("tr"));
+    const perPage = 5;
     let currentPage = 1;
     const totalPages = Math.ceil(items.length / perPage);
 
@@ -14,28 +12,33 @@ document.addEventListener("DOMContentLoaded", function () {
         items.forEach((item, index) => {
             item.style.display =
                 index >= (page - 1) * perPage && index < page * perPage
-                    ? "block"
+                    ? "table-row"
                     : "none";
         });
     }
-
     function createPagination() {
         const pagination = document.getElementById("pagination");
         pagination.innerHTML = "";
-
         for (let i = 1; i <= totalPages; i++) {
             let btn = document.createElement("button");
             btn.innerText = i;
-            btn.style.margin = "2px";
+            btn.className = "btn btn-sm mx-1";
             btn.onclick = () => {
                 currentPage = i;
                 showPage(currentPage);
+                setActiveButton(i);
             };
             pagination.appendChild(btn);
         }
     }
-
+    function setActiveButton(page) {
+        document.querySelectorAll("#pagination button").forEach(btn => {
+            btn.classList.remove("active");
+        });
+        document.querySelectorAll("#pagination button")[page - 1].classList.add("active");
+    }
     showPage(currentPage);
     createPagination();
+    setActiveButton(currentPage);
 });
 </script>

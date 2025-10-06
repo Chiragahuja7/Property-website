@@ -1,6 +1,6 @@
   <div id="page_wrapper" class="bg-light-gray">
         <!--============== Property Details Start ==============-->
-        <div class="full-row">
+        <div class="full-row pt-0 pt-lg-5">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -21,6 +21,9 @@
                                     </div>
                                     <div class="entry-property-price-wrapper mt-5">
                                         <span class="listing-price">₹<%=property.priceFromInNumber%><small> / Fixed</small></span>
+                                        <a href="#" class="btn btn-primary btn-hover-secondary hover-flash-move" data-bs-toggle="modal" data-bs-target="#interestedModal">
+                                        Interested
+                                       </a>
                                     </div>
                                 </div>
                                 <div class="entry-single-thumbnail mb-4">
@@ -48,11 +51,10 @@
                                                         <li><span>Installment Facility :</span> Yes</li>
                                                         <li><span>Insurance :</span> Yes</li>
                                                     </ul>
-                                                    
                                                 </div>
                                                 <div class="single-property-description">
                                                     <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Description</h4>
-                                                    <p><%=property.description%></p></p>
+                                                    <p><%-property.description%></p></p>
                                                 </div>
                                                 <div class="single-property-details">
                                                     <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark pb-2 mb-4">Address</h4>
@@ -89,7 +91,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Use youtube or Vimeo video link in href, first open the video and just copy the link from url and past here -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,6 +105,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="contact-with-agent">
+                                                <h4 class="text-uppercase ls-3 fw-semibold border-bottom fs-6 color-dark mt-2">Banks</h4>
+
+                                                <div class="row">
+                                                  <% if (mybanks && mybanks.length > 0) { %>
+                                                    <% mybanks.forEach(function(bank) { %>
+                                                      <div class="col-md-4 col-sm-6 mb-3">
+                                                        <div class="single-agent-info d-flex align-items-center p-2 rounded">
+                                                          <% if (bank.upload) { %>
+                                                            <img src="<%= bank.upload %>" alt="<%= bank.name %>" style="width:50px; height:50px;">
+                                                          <% } else { %>
+                                                            <img src="/images/default-bank.png" alt="Default Logo" style="width:50px; height:50px;">
+                                                          <% } %>
+                                                          <div class="agent-block">
+                                                            <h5 class="agent-name fs-6 color-dark ls-1 mb-0"><%= bank.name %></h5>
+                                                            <h5 class="agent-name fs-6 color-dark ls-1 mb-0"><%= bank.roi %>%</h5>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    <% }) %>
+                                                  <% } else { %>
+                                                    <p class="text-muted">No banks available.</p>
+                                                  <% } %>
+                                                </div>
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
@@ -137,3 +163,72 @@
 
     <!-- Scroll to top -->
     <div class="scroll-top-vertical xs-mx-none" id="scroll">Back to top <i class="ms-2 fa-solid fa-arrow-right-long"></i></div>
+
+    <div class="modal fade" id="interestedModal" tabindex="-1" aria-labelledby="interestedLabel">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-3 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="interestedLabel">Interested</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="interestedForm">
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contact Number</label>
+            <input type="number" class="form-control" name="contact" required>
+          </div>
+          <input type="hidden" name="location" value="<%=property.location%>">
+          <input type="hidden" name="type" value="Interested">
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById("interestedForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = {
+    name: this.name.value,
+    email: this.email.value,
+    contact: this.contact.value,
+    type:this.type.value,
+    location:this.location.value
+  };
+
+  try {
+    const res = await fetch("/interested", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      alert("Your request has been saved! ✅");
+      this.reset();
+      var myModalEl = document.getElementById("interestedModal");
+      var modal = bootstrap.Modal.getInstance(myModalEl);
+      if (!modal) modal = new bootstrap.Modal(myModalEl);
+      document.activeElement.blur();
+      modal.hide();
+      document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+    } else {
+      alert("Something went wrong ❌");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error!");
+  }
+});
+</script>

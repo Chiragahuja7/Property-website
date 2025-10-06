@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/control.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jodit@3.24.5/build/jodit.min.css">
 <style>
   select.form-control {
     line-height: 1.5;
@@ -33,6 +34,13 @@
 }
 .offcanvas-title{
     color: white;
+}
+#pagination button.active {
+    background-color: #AA8453;
+    color: white;
+}
+#pagination button {
+    color: black;
 }
 
 </style>
@@ -127,6 +135,9 @@ document.getElementById("searchForm").addEventListener("submit", function(e) {
     else if (path.includes("/properties")) type = "properties";
     else if (path.includes("/agents")) type = "agent";
     else if (path.includes("/amenities")) type = "amenities";
+    else if (path.includes("/open-leads")) type = "open-leads";
+    else if (path.includes("/closed-leads")) type = "closed-leads";
+    else if (path.includes("/lost-leads")) type = "lost-leads";
 
     if (!type) {
         const params = new URLSearchParams(window.location.search);
@@ -135,6 +146,22 @@ document.getElementById("searchForm").addEventListener("submit", function(e) {
 
     window.location.href = `/search?type=${type}&query=${encodeURIComponent(query)}`;
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jodit@3.24.5/build/jodit.min.js"></script>
+
+<script>
+  const editor = new Jodit('#description', {
+    height: 300,
+    toolbarAdaptive: false,
+    uploader: { insertImageAsBase64URI: true },
+    buttons: [
+      'bold', 'italic', 'underline', '|',
+      'ul', 'ol', '|',
+      'image', 'link', '|',
+      'undo', 'redo', '|',
+      'hr', 'eraser', 'source'
+    ]
+  });
 </script>
 
 </body>

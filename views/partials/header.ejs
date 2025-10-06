@@ -120,7 +120,6 @@ document.getElementById("scheduleCallForm").addEventListener("submit", async fun
       if (!modal) modal = new bootstrap.Modal(myModalEl);
       document.activeElement.blur();
       modal.hide();
-      model.close();
       document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
     } else {
       alert("Something went wrong ❌");

@@ -24,14 +24,6 @@ const leads=new mongoose.Schema({
     message:{
         type:String,
     },
-    assigned:{
-        type:String,
-        default:"admin"
-    },
-    status:{
-        type:String,
-        default:"active",
-    },
     property:{
         type:String,
     },
@@ -42,7 +34,15 @@ const leads=new mongoose.Schema({
     location:{
         type:String,
         required:true
+    },
+    assignedAgent:{
+        type:String,
+        ref:'Agent'
+    },
+    leadStatus:{
+        type:String,
+        enum:['open', 'closed', 'lost'],
+        default: 'open'
     }
-
 })
 module.exports=mongoose.model('leads',leads);

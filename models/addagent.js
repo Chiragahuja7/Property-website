@@ -27,6 +27,10 @@ const addagent=new mongoose.Schema({
     status:{
         type:String,
         default:"Active",
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 
 })
