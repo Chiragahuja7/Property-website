@@ -32,16 +32,19 @@
                     <span class="ordering-pages ps-2 ms-1">Showing <%= myproperties.filter(p => p.listingStatus === "published").length %> results
                     </span>
                 </div>
+                <div class="text-end mb-3">
+             <button id="toggleCompare" class="btn btn-primary me-2">Enable Compare</button>
+             <button id="goToCompare" class="btn btn-success d-none">Go to Compare</button>
+             </div>
             </div>
         </div>
     </div>
-
-    <div class="row g-4">
+    <div class="row g-4" id="property-list">
         <% if (myproperties && myproperties.length > 0) { %>
         <% let publishedProperties=myproperties.filter(p=>p.listingStatus==="published"); %>
            <% if (publishedProperties.length > 0) { %>
                 <% publishedProperties.forEach(function(property) { %>  
-                  <div class="col-lg-4 col-md-6 col-12 shadow p-0 card">
+                  <div class="col-lg-4 col-md-6 col-12 shadow p-0 card property-item position-relative">
                     <div class="property-grid-2 property-block h-100">
                         <div class="entry-wrapper">
                             <div class="entry-thumbnail max-height-180px">
@@ -55,16 +58,18 @@
                                 <div class="post-date">
                                     <i class="fa-regular fa-calendar-days"></i>
                                     <span><%= property.createdAt ? property.createdAt.toDateString() : '' %></span>
-                                </div>
+                                </div class="position-relative">
                                 <a href="/property/<%= property._id %>" class="entry-thumbnail-image property-img">
                                     <img src="<%= property.mainImage || '/assets/images/landing_bg.png' %>" alt="Property Image"class="img-fluid property-img" >
                                 </a>
+                                <div class="position-absolute top-0 end-0 m-2 compare-checkbox d-none" style="z-index: 10;">
+                                <input type="checkbox" name="compare" class="compare-input form-check-input" value="<%= property._id %>">
                                 </div>
-
+                                </div>
                             <div class="entry-content-wrapper p-2">
                                 <div class="entry-header">
                                     <div class="post-meta">
-                                        <div class="property-type"><a href="#"><%= property.propertyType %></a></div>
+                                        <div class="property-type"><a class="stretched-link" href="/property/<%= property._id %>"><%= property.propertyType %></a></div>
                                     </div>
                                     <h5 class="listing-title">
                                         <a href="/property/<%= property._id %>"><%= property.propertyName %></a>
@@ -103,3 +108,52 @@
         <% } %>
     </div>
 </div>
+<%- include('./partials/browsePagination') %>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.getElementById('toggleCompare');
+  const goBtn = document.getElementById('goToCompare');
+  const checkboxes = document.querySelectorAll('.compare-checkbox');
+  const compareInputs = document.querySelectorAll('.compare-input');
+
+  let compareMode = false;
+
+  toggleBtn.addEventListener('click', function () {
+    compareMode = !compareMode;
+
+    checkboxes.forEach(cb => {
+      cb.classList.toggle('d-none', !compareMode);
+    });
+
+    goBtn.classList.toggle('d-none', !compareMode);
+    toggleBtn.textContent = compareMode ? 'Cancel Compare' : 'Enable Compare';
+  });
+
+  goBtn.addEventListener('click', function () {
+    const selected = Array.from(compareInputs)
+      .filter(input => input.checked)
+      .map(input => input.value);
+
+    if (selected.length < 2) {
+      alert('Please select at least two properties to compare.');
+      return;
+    }
+    fetch('/compare', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ properties: selected })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = '/compare';
+      } else {
+        alert('Error saving compare data');
+      }
+    })
+    .catch(err => console.error(err));
+  });
+});
+</script>

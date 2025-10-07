@@ -1,7 +1,7 @@
 <style>
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: 95%;
             margin: 20px auto;
         }
         th, td {
@@ -35,7 +35,7 @@
 </form>
     </div>
 </div>
-
+<div class="table-responsive">
 <table>
      <thead>
           <tr>
@@ -49,11 +49,11 @@
          </tr>
     </thead>
     <tbody id="paginated-container">
-
-    <% mycalls.forEach((call, index) => { %>
-        <% if (call.leadStatus==="open"){%>
+    <% let count = 0; %>
+    <% mycalls.forEach((call) => { %>
+        <% if (call.leadStatus === "open") { count++; %>
         <tr>
-            <td><%= index + 1 %></td>
+            <td><%= count %></td>
             <td><%= call.name %></td>
             <td><%= call.type %></td>
             <td><%= call.location %></td>
@@ -64,11 +64,12 @@
             }) %></td>
             <td><%= call.assignedAgent || "admin"%></td>
             <td class="d-flex gap-2 justify-content-center">
-                <a href="/editlead/<%= call._id %>" class="btn btn-warning btn-sm flex-fill">Select</a>
+                <a href="/editlead/<%= call._id %>" class="btn btn-primary btn-sm flex-fill">Select</a>
             </td>
         </tr>
          <%}%>
     <% }); %>
 </tbody>
 </table>
+</div>
 <%- include('../partials/pagination') %>

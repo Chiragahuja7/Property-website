@@ -1,12 +1,12 @@
-<div id="pagination" class="d-flex justify-content-center my-3"></div>
+<div id="browse-pagination" class="d-flex justify-content-center my-3"></div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector("tbody");
+    const container = document.getElementById("property-list");
     if (!container) return;
 
-    const items = Array.from(container.querySelectorAll("tr"));
-    const perPage = 5;
+    const items = Array.from(container.querySelectorAll(".property-item"));
+    const perPage = 6;
     let currentPage = 1;
     const totalPages = Math.ceil(items.length / perPage);
 
@@ -14,13 +14,21 @@ document.addEventListener("DOMContentLoaded", function () {
         items.forEach((item, index) => {
             item.style.display =
                 index >= (page - 1) * perPage && index < page * perPage
-                    ? "table-row"
+                    ? "block"
                     : "none";
         });
     }
 
+    function createButton(text, callback) {
+        const btn = document.createElement("button");
+        btn.innerText = text;
+        btn.className = "btn btn-primary btn-sm mx-1";
+        btn.onclick = callback;
+        return btn;
+    }
+
     function createPagination() {
-        const pagination = document.getElementById("pagination");
+        const pagination = document.getElementById("browse-pagination");
         pagination.innerHTML = "";
 
         const firstBtn = createButton("First", () => goToPage(1));
@@ -33,15 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const lastBtn = createButton("Last", () => goToPage(totalPages));
 
         pagination.append(firstBtn, prevBtn, pageInfo, nextBtn, lastBtn);
-        updateButtons();
-    }
-
-    function createButton(text, callback) {
-        const btn = document.createElement("button");
-        btn.innerText = text;
-        btn.className = "btn btn-primary btn-sm mx-1 color-white";
-        btn.onclick = callback;
-        return btn;
     }
 
     function goToPage(page) {
@@ -49,10 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (page > totalPages) page = totalPages;
         currentPage = page;
         showPage(currentPage);
-        updateButtons();
-    }
-
-    function updateButtons() {
         document.getElementById("page-info").innerText = `${currentPage} of ${totalPages}`;
     }
 

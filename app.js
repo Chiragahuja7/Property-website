@@ -18,6 +18,7 @@ const cookieParser = require('cookie-parser');
 const addproperties=require('./models/addproperty');
 const mydata=require("./models/utils");
 const leads = require('./models/leads');
+const Compare = require('./models/compare');
 
 app.use(expressLayouts);
 app.set('layout',"layouts/main");
@@ -225,8 +226,8 @@ app.post("/sell", async (req, res) => {
 
 app.post("/interested", async (req, res) => {
   try {
-    const { name, email, contact ,type ,location} = req.body;
-    const newCall = new leads({ name, email, contact,type ,location });
+    const { name, email, contact ,type ,location ,address} = req.body;
+    const newCall = new leads({ name, email, contact,type ,location,address });
     await newCall.save();
     res.json({ success: true, message: "Call scheduled!" });
   } catch (err) {
@@ -450,10 +451,29 @@ app.get('/appointments',adminAuth,async (req,res)=>{
   }
 });
 
-app.get('/customers',adminAuth,(req,res)=>{
-    res.render("admin/customer",{
-        layout:adminLayout
-    });
+app.get('/customers', async (req, res) => {
+  try {
+    let { from, to } = req.query;
+    let filter = {};
+    if (from && to) {
+      const fromDate = new Date(from);
+      const toDate = new Date(to);
+      toDate.setHours(23, 59, 59, 999); 
+      filter.createdAt = { $gte: fromDate, $lte: toDate };
+    } else if (from) {
+      const fromDate = new Date(from);
+      filter.createdAt = { $gte: fromDate };
+    } else if (to) {
+      const toDate = new Date(to);
+      toDate.setHours(23, 59, 59, 999);
+      filter.createdAt = { $lte: toDate };
+    }
+    const myfiltercalls = await leads.find(filter).sort({ createdAt:-1});
+    res.render('admin/customer', { myfiltercalls, from, to,layout:adminLayout });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
 
 app.get('/open-leads',adminAuth,async (req,res)=>{
@@ -712,7 +732,6 @@ function adminAuth(req, res, next) {
 
 function isAdminMiddleware(req, res, next) {
   try {
-    console.log(req.user);
     if (!req.user) {
       return res.status(403).send("Access denied: Admins only");
     }
@@ -880,4 +899,31 @@ app.get("/logout", (req, res) => {
         httpOnly: true,
     });
     res.redirect("/login");
+});
+
+app.get('/compare', async (req, res) => {
+  const compare = await Compare.findOne().populate('properties');
+  res.render('compare', { compare });
+});
+
+app.post('/delete-image/:id', async (req, res) => {
+  const property = await addproperties.findById(req.params.id);
+  const index = req.query.index;
+  if (property && property.upload[index]) {
+    property.upload.splice(index, 1);
+    await property.save();
+  }
+  res.redirect(`/editproperty/${req.params.id}`);
+});
+
+app.post('/compare', async (req, res) => {
+  try {
+    const { properties } = req.body;
+    await Compare.deleteMany();
+    await Compare.create({ properties });
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.json({ success: false });
+  }
 });
