@@ -114,7 +114,7 @@ app.get('/browse', async (req, res) => {
 
 app.post('/browse', async (req, res) => {
   try {
-    const { location, propertyStatus, propertyType ,additionalInfo,amenities } = req.body;
+    const { location, propertyStatus, propertyType ,additionalInfo,amenities , minprice ,maxprice ,area} = req.body;
     let query = {};
 
     if (location) {
@@ -131,6 +131,22 @@ app.post('/browse', async (req, res) => {
     }
     if (amenities) {
       query.amenities = amenities;
+    }
+    if (minprice || maxprice) {
+      query.priceFromInNumber = {};
+      if (minprice) query.priceFromInNumber.$gte = Number(minprice);
+      if (maxprice) query.priceFromInNumber.$lte = Number(maxprice);
+    }
+    if (area) {
+      const ranges = [].concat(area);
+      const areaConditions = ranges.map(r => {
+        if (r.includes('+')) {
+          return { areaSquareFeetFrom: { $gte: parseInt(r) } };
+        }
+        const [min, max] = r.split('-').map(Number);
+        return { areaSquareFeetFrom: { $gte: min, $lte: max } };
+      });
+      query = { $and: [ query, { $or: areaConditions } ] };
     }
 
     const myproperties = await addproperties.find(query);

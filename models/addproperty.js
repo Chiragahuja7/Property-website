@@ -33,11 +33,11 @@ const addproperties=new mongoose.Schema({
         required:true
     },
     areaSquareFeetFrom:{
-        type:String,
+        type:Number,
         required:true
     },
     areaSquareFeetTo:{
-        type:String,
+        type:Number,
         required:true
     },
     priceFromInWords:{
@@ -49,11 +49,11 @@ const addproperties=new mongoose.Schema({
         required:true
     },
     priceFromInNumber:{
-        type:String,
+        type:Number,
         required:true
     },
     priceToInNumber:{
-        type:String,
+        type:Number,
         required:true
     },
     address:{
