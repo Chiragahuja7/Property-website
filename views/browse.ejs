@@ -6,7 +6,7 @@
 }
 </style>
 
-<div class="full-row p-3 bg-light-gray">
+<div class="full-row p-3 bg-white">
     <div class="full-row inner-page-banner pb-0 pt-2">
         <div class="container">
             <div class="row">
@@ -33,81 +33,92 @@
                     </span>
                 </div>
                 <div class="text-end mb-3">
-             <button id="toggleCompare" class="btn btn-primary me-2">Enable Compare</button>
+                   <% if (myproperties.filter(p => p.listingStatus === "published").length > 0) { %>
+                   <button id="toggleCompare" class="btn btn-primary me-2">Compare</button>
+                   <% } %>
              <button id="goToCompare" class="btn btn-success d-none">Go to Compare</button>
              </div>
             </div>
         </div>
     </div>
-    <div class="row g-4" id="property-list">
-        <% if (myproperties && myproperties.length > 0) { %>
-        <% let publishedProperties=myproperties.filter(p=>p.listingStatus==="published"); %>
-           <% if (publishedProperties.length > 0) { %>
-                <% publishedProperties.forEach(function(property) { %>  
-                  <div class="col-lg-4 col-md-6 col-12 shadow p-0 card property-item position-relative">
-                    <div class="property-grid-2 property-block h-100">
-                        <div class="entry-wrapper">
-                            <div class="entry-thumbnail max-height-180px">
-                                <div class="type">
-                                    <% if (property.propertyStatus === 'Sale') { %>
-                                        <span class="sale text-white">For Sale</span>
-                                    <% } else { %>
-                                        <span class="rent text-white">For Rent</span>
-                                    <% } %>
-                                </div>
-                                <div class="post-date">
-                                    <i class="fa-regular fa-calendar-days"></i>
-                                    <span><%= property.createdAt ? property.createdAt.toDateString() : '' %></span>
-                                </div class="position-relative">
-                                <a href="/property/<%= property._id %>" class="entry-thumbnail-image property-img">
-                                    <img src="<%= property.mainImage || '/assets/images/landing_bg.png' %>" alt="Property Image"class="img-fluid property-img" >
-                                </a>
-                                <div class="position-absolute top-0 end-0 m-2 compare-checkbox d-none" style="z-index: 10;">
-                                <input type="checkbox" name="compare" class="compare-input form-check-input" value="<%= property._id %>">
-                                </div>
-                                </div>
-                            <div class="entry-content-wrapper p-2">
-                                <div class="entry-header">
-                                    <div class="post-meta">
-                                        <div class="property-type"><a class="stretched-link" href="/property/<%= property._id %>"><%= property.propertyType %></a></div>
-                                    </div>
-                                    <h5 class="listing-title">
-                                        <a href="/property/<%= property._id %>"><%= property.propertyName %></a>
-                                    </h5>
-                                    <span class="listing-location">
-                                        <i class="fas fa-map-marker-alt"></i> <%= property.location %>
-                                    </span>
-                                </div>
-                                <div class="entry-content">
-                                    <ul class="property-info">
-                                        <li title="Beds"><span><i class="fa-solid fa-bed"></i></span><%= property.additionalInfo %></li>
-                                        <li title="Area"><span><i class="fa-solid fa-vector-square"></i></span><%= property.areaSquareFeetFrom %> Sqft</li>
-                                    </ul>
-                                </div>
-                                <div class="entry-footer">
-                                    <span class="listing-price">
-                                        ₹<%= property.priceFromInNumber %>
-                                        <% if (property.status === 'For Rent') { %>
-                                            <small> / mo</small>
-                                        <% } else { %>
-                                            <small> / Fixed</small>
-                                        <% } %>
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
+ <div class="container">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="property-list">
+    <% if (myproperties && myproperties.length > 0) { %>
+      <% let publishedProperties = myproperties.filter(p => p.listingStatus === "published"); %>
+      <% if (publishedProperties.length > 0) { %>
+        <% publishedProperties.forEach(function(property) { %>
+          <div class="col">
+            <div class="card shadow h-100 property-item position-relative">
+              <div class="property-grid-2 property-block h-100">
+                <div class="entry-wrapper">
+                  <div class="entry-thumbnail max-height-180px position-relative">
+                    <div class="type position-absolute top-0 start-0 m-2">
+                      <% if (property.propertyStatus === 'Sale') { %>
+                        <span class="badge bg-danger">For Sale</span>
+                      <% } else { %>
+                        <span class="badge bg-success">For Rent</span>
+                      <% } %>
                     </div>
+
+                    <div class="post-date position-absolute bottom-0 start-0 m-2 text-white small">
+                      <i class="fa-regular fa-calendar-days"></i>
+                      <%= property.createdAt ? property.createdAt.toDateString() : '' %>
+                    </div>
+
+                    <a href="/property/<%= property._id %>" class="d-block">
+                      <img src="<%= property.mainImage || '/assets/images/landing_bg.png' %>" 
+                           alt="Property Image"
+                           class="img-fluid w-100 rounded-top property-img" />
+                    </a>
+
+                    <div class="position-absolute top-0 end-0 m-2 d-none compare-checkbox" style="z-index: 10;">
+                      <input type="checkbox" name="compare" class="compare-input form-check-input" value="<%= property._id %>">
+                    </div>
+                  </div>
+
+                  <div class="entry-content-wrapper p-3">
+                    <h6 class=" mb-1 bg-black d-inline-block px-2 py-1 rounded">
+                      <a class="stretched-link text-decoration-none text-white" href="/property/<%= property._id %>">
+                        <%= property.propertyType %>
+                      </a>
+                    </h6>
+                    <h5 class="fw-bold">
+                      <a href="/property/<%= property._id %>" class="text-dark text-decoration-none">
+                        <%= property.propertyName %>
+                      </a>
+                    </h5>
+                    <p class="text-muted small mb-2">
+                      <i class="fas fa-map-marker-alt"></i> <%= property.location %>
+                    </p>
+
+                    <ul class="list-inline mb-2 small">
+                      <li class="list-inline-item me-3"><i class="fa-solid fa-bed"></i> <%= property.additionalInfo %></li>
+                      <li class="list-inline-item"><i class="fa-solid fa-vector-square"></i> <%= property.areaSquareFeetFrom %> Sqft</li>
+                    </ul>
+
+                    <div class="fw-bold text-success fs-6">
+                      ₹<%= property.priceFromInNumber %>
+                      <% if (property.status === 'For Rent') { %>
+                        <small>/mo</small>
+                      <% } else { %>
+                        <small>/Fixed</small>
+                      <% } %>
+                    </div>
+                  </div>
                 </div>
-            <% }) %>
-        <% } else { %>
-            <p class="text-center">No properties found.</p>
-        <% } %>
-        <%}else{%>
-            <p class="text-center">No properties found.</p>
-        <% } %>
-    </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-center">No properties found.</p>
+      <% } %>
+    <% } else { %>
+      <p class="text-center">No properties found.</p>
+    <% } %>
+  </div>
 </div>
+
 <%- include('./partials/browsePagination') %>
 <script>
 document.addEventListener('DOMContentLoaded', function () {

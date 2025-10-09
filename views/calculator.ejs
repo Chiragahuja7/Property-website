@@ -16,6 +16,7 @@
         <label class="form-label mt-3">Interest Rate (%): <span id="rateVal">8</span></label>
         <input type="range" class="form-range" min="0" max="20" step="0.1" value="8" id="interestRate">
       </div>
+      <a href="/calculator" class="btn btn-primary mt-2">Reset</a>
     </div>
 
     <div class="col-12 col-lg-8">
@@ -33,16 +34,21 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const ctx = document.getElementById('emiChart').getContext('2d');
+
   function formatCurrency(num) {
+    if (isNaN(num) || !isFinite(num)) return "₹0";
     return num.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
   }
+
   let loanAmount = 500000;
   let tenure = 60;
   let rate = 8;
 
   function calculateEMI(p, n, r) {
+    if (n === 0 || r === 0) return 0;
     const monthlyRate = r / 12 / 100;
     const emi = (p * monthlyRate * Math.pow(1 + monthlyRate, n)) / 
                 (Math.pow(1 + monthlyRate, n) - 1);
@@ -74,8 +80,8 @@
     document.getElementById('rateVal').textContent = rate;
 
     const emi = calculateEMI(loanAmount, tenure, rate);
-    const totalPayment = Math.round(emi * tenure);
-    const totalInterest = totalPayment - loanAmount;
+    const totalPayment = isNaN(emi) ? 0 : Math.round(emi * tenure);
+    const totalInterest = totalPayment > 0 ? totalPayment - loanAmount : 0;
 
     document.getElementById('emi').textContent = formatCurrency(Math.round(emi));
     document.getElementById('totalInterest').textContent = formatCurrency(totalInterest);

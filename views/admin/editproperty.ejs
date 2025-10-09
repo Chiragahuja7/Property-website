@@ -7,20 +7,20 @@
   .image-preview .btn-danger {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
-    pointer-events: none; /* don't let invisible button intercept clicks */
-    z-index: 2; /* ensure button sits above the image when visible */
+    pointer-events: none;
+    z-index: 2;
     padding: 2px 6px;
     font-size: 14px;
   }
 
   .image-preview:hover .btn-danger {
     opacity: 1;
-    pointer-events: auto; /* allow clicking when visible */
+    pointer-events: auto;
   }
 
 </style>
 
-<div class="page-title-wrapper d-lg-flex flex-column gap-3">
+<div class="page-title-wrapper d-lg-flex flex-column gap-3 p-3">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb mb-0 bg-transparent p-0">
       <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
@@ -34,7 +34,7 @@
 <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-10">
+      <div class="col-lg-12">
         <div class="contact-form">
           <form method="POST" class="editproperty" action="/editproperty/<%= property._id %>" enctype="multipart/form-data">
   <div class="row g-3">
@@ -58,7 +58,7 @@
 
     <div class="col-md-6">
       <label class="form-label">Property Type</label>
-      <select class="form-control text-dark" name="propertyType" required>
+      <select class="form-select text-dark" name="propertyType" required>
       <% if (mydata && mydata.default.PROPERTY_TYPE) { %>
       <% mydata.default. PROPERTY_TYPE.forEach(function(type) { %>
         <option class="text-dark" value="<%= type %>" <%= property.propertyType == type ? "selected" : "" %>>
@@ -71,7 +71,7 @@
 
     <div class="col-md-6">
       <label class="form-label">Property Status</label>
-      <select class="form-control text-dark" name="propertyStatus" required>
+      <select class="form-select text-dark" name="propertyStatus" required>
       <% if (mydata && mydata.default.PROPERTY_STATUS) { %>
       <% mydata.default. PROPERTY_STATUS.forEach(function(status) { %>
         <option class="text-dark" value="<%= status %>" <%= property.propertyStatus == status ? "selected" : "" %>>
@@ -84,7 +84,7 @@
 
     <div class="col-md-6">
   <label class="form-label">Location</label>
-  <select class="form-control text-dark" name="location" required>
+  <select class="form-select text-dark" name="location" required>
     <option class="text-dark" value="">-- Select Location --</option>
     <% mylocation.forEach(loc => { %>
     <option class="text-dark" value="<%= loc.location %>" <%= property.location == loc.location ? "selected" : "" %>>
@@ -146,7 +146,7 @@
 
     <div class="col-md-6">
     <label class="form-label">Year Of Construction</label>
-    <select class="form-control text-dark" name="yearsOfConstruction" required>
+    <select class="form-select text-dark" name="yearsOfConstruction" required>
       <% if (mydata && mydata.default.YEARS_OF_CONSTRUCTION) { %>
       <% mydata.default.YEARS_OF_CONSTRUCTION.forEach(function(year) { %>
         <option class="text-dark" value="<%= year %>" <%= property.yearsOfConstruction == year ? "selected" : "" %>>
@@ -159,7 +159,7 @@
 
     <div class="col-md-12">
       <label class="form-label">Listing Status</label>
-      <select class="form-control text-dark" name="listingStatus" required>
+      <select class="form-select text-dark" name="listingStatus" required>
       <% if (mydata && mydata.default.LISTING_STATUS) { %>
       <% mydata.default.LISTING_STATUS.forEach(function(status) { %>
         <option class="text-dark" value="<%= status %>" <%= property.listingStatus == status ? "selected" : "" %>>
@@ -221,7 +221,7 @@
         <% myamenities.forEach(function(amenity) { %>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="amenities" value="<%= amenity.amenities %>"
-             <% if (property.amenities && property.amenities.includes(amenity._id.toString())) { %> checked <% } %>>
+             <% if (property.amenities && property.amenities.includes(amenity.amenities)) { %> checked <% } %>>
             <label class="form-check-label"><%= amenity.amenities %></label>
           </div>
         <% }) %>
@@ -268,7 +268,7 @@
 <h1 class="page-title">Builder Description</h1>
     <div class="col-md-12">
       <label class="form-label">Description</label>
-      <textarea class="form-control" name="builderDescription" rows="3" required><%= property.builderDescription %></textarea>
+      <textarea id="builderdescription" class="form-control" name="builderDescription" rows="3" required><%= property.builderDescription %></textarea>
     </div>
 <hr>
 <br>
@@ -282,7 +282,7 @@
       </div>
     <% }) %>
   <% } else { %>
-    <!-- At least one input if no places -->
+
     <div class="col-md-6 d-flex gap-2">
       <input class="form-control" name="nearbyPlaces" value="">
       <button type="button" class="btn removePlace">❌</button>
@@ -290,7 +290,6 @@
   <% } %>
 </div>
 
-<!-- Add More Button -->
 <div class="mt-3">
   <button type="button" class="btn btn-primary" id="addPlace">+ Add More</button>
 </div>

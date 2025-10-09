@@ -199,7 +199,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Contact Number</label>
-            <input type="number" class="form-control" name="contact" required>
+            <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Address</label>
@@ -207,6 +207,7 @@
           </div>
           <input type="hidden" name="location" value="<%=property.location%>">
           <input type="hidden" name="type" value="Interested">
+          <input type="hidden" name="propId" value="<%= property._id %>">
           <button type="submit" class="btn btn-primary w-100">Submit</button>
         </form>
       </div>
@@ -224,7 +225,8 @@ document.getElementById("interestedForm").addEventListener("submit", async funct
     contact: this.contact.value,
     address:this.address.value,
     type:this.type.value,
-    location:this.location.value
+    location:this.location.value,
+    propId:this.propId.value
   };
 
   try {

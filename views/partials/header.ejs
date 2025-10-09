@@ -71,11 +71,11 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Contact Number</label>
-            <input type="number" class="form-control" name="contact" required>
+            <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Location</label>
-            <select class="form-control text-dark" type="location" name="location" required>
+            <select class="form-select text-dark" type="location" name="location" required>
                  <option class="text-dark" value="">-- Select Location --</option>
                  <% mylocation.forEach(loc => { %>
                  <option class="text-dark">

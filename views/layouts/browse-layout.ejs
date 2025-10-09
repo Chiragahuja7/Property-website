@@ -35,7 +35,7 @@
             <%- include('../partials/header-browse.ejs') %>
 
             <div class="d-md-none mb-3">
-                <button class="btn btn-dark w-10" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <button class="btn btn-primary w-10 mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                     ☰ Filter
                 </button>
             </div>
@@ -43,7 +43,7 @@
             <div class="offcanvas offcanvas-start" style="background-color: #232528;" tabindex="-1" id="mobileSidebar">
                 <div class="offcanvas-header" style="background-color: #232528;">
                     <h5 class="text-white">Filter</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body color-white" style="background-color: #232528;">
                     <%- include('../partials/sidebar_filter.ejs') %>

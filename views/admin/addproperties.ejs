@@ -30,7 +30,7 @@
               </div>
               <div class="col-lg-6">
                 <label>Property Type</label>
-                <select class="form-control" name="propertyType" required>
+                <select class="form-select" name="propertyType" required>
                  <% if (mydata && mydata.default.PROPERTY_TYPE) { %>
                    <% mydata.default.PROPERTY_TYPE.forEach(function(type) { %>
                      <option class="text-dark"  value="<%= type %>"><%= type %></option>
@@ -40,7 +40,7 @@
               </div>
               <div class="col-lg-6">
                 <label>Property Status</label>
-                <select class="form-control" name="propertyStatus" required>
+                <select class="form-select" name="propertyStatus" required>
                  <% if (mydata && mydata.default.PROPERTY_STATUS) { %>
                    <% mydata.default.PROPERTY_STATUS.forEach(function(status) { %>
                      <option class="text-dark" value="<%= status %>"><%= status %></option>
@@ -50,7 +50,7 @@
               </div>
               <div class="col-lg-6">
                 <label> Location</label>
-                <select class="form-control text-dark" name="location" required>
+                <select class="form-select text-dark" name="location" required>
                  <option class="text-dark" value="">-- Select Location --</option>
                  <% mylocation.forEach(loc => { %>
                  <option class="text-dark">
@@ -97,7 +97,7 @@
               </div>
               <div class="col-lg-6">
                <label>Year Of Construction</label>
-               <select class="form-control" name="yearsOfConstruction" required>
+               <select class="form-select" name="yearsOfConstruction" required>
                  <% if (mydata && mydata.default.YEARS_OF_CONSTRUCTION) { %>
                    <% mydata.default.YEARS_OF_CONSTRUCTION.forEach(function(year) { %>
                      <option class="text-dark"  value="<%= year %>"><%= year %></option>
@@ -107,7 +107,7 @@
              </div>
               <div class="col-lg-12">
                 <label>Listing Status</label>
-               <select class="form-control text-dark" name="listingStatus" required>
+               <select class="form-select text-dark" name="listingStatus" required>
                <% if (mydata && mydata.default.LISTING_STATUS) { %>
                <% mydata.default.LISTING_STATUS.forEach(function(status) { %>
                  <option class="text-dark">

@@ -3,6 +3,7 @@
             border-collapse: collapse;
             width: 95%;
             margin: 20px auto;
+            display:none;
         }
         th, td {
             border: 1px solid black;
@@ -22,7 +23,8 @@
                         </div>
                 </div>
             </div>
-            <form method="GET" action="/customers">
+<div class="p-3">
+<form id="customerfilter" method="GET" action="/customers">
   <div class="form-group">
     <label class="mt-2">From:</label>
     <input type="date" name="from" class="form-control" value="<%= from || '' %>">
@@ -34,9 +36,14 @@
     <a href="/customers" class="btn btn-secondary mt-3">Reset</a>
   </div>
 </form>
+</div>
 
 <div class="table-responsive">
-<table>
+<% if (from || to) { %>
+    <table id="customer-table" style="display: table;">
+<% } else { %>
+    <table id="customer-table" style="display: none;">
+<% } %>
      <thead>
           <tr>
          <th>S.No</th>
@@ -54,15 +61,19 @@
         <tr>
             <td><%= index+1 %></td>
             <td><%= call.name %></td>
-            <td><%= call.type %></td>
-            <td><%= call.location %></td>
+            <td><%= call.type%>
+                <%if(call.type==='Interested'){%>
+                    <a href="/property/<%=call.propId%>"><i class="fa-solid fa-paper-plane"></i></a>
+                <%}%>
+                </td>
+            <td><%= call.location%></td>
             <td><%= call.createdAt.toLocaleDateString('en-IN', { 
               day: '2-digit', 
               month: 'short', 
               year: 'numeric' 
             }) %></td>
             <td><%= call.contact || "admin"%></td>
-            <td><%= call.email %></td></td>
+            <td><%= call.email %></td>
         </tr>
     <% }); %>
 </tbody>

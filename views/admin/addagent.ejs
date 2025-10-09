@@ -12,8 +12,7 @@
      <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
-      <div class="col-md-5 order-md-2"></div>
-      <div id="agentcall" class="col-lg-7">
+      <div id="agentcall" class="col-lg-12">
         <div class="contact-form">
           <form method="POST" id="addagent">
             <div class="row g-3">
@@ -27,7 +26,7 @@
               </div>
               <div class="col-lg-12">
                 <label>location</label>
-                <select class="form-control text-dark" name="location" required>
+                <select class="form-select text-dark" name="location" required>
                  <option class="text-dark" value="">-- Select Location --</option>
                  <% mylocation.forEach(loc => { %>
                  <option class="text-dark">
@@ -38,11 +37,11 @@
               </div>
               <div class="col-lg-12">
                 <label>Phone No</label>
-                <input type="number" class="form-control" name="contact" required>
+                <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
               </div>
               <div class="col-lg-12">
                 <label>Password</label>
-                <input type="text" class="form-control" name="password" required>
+                <input type="password" class="form-control" name="password" required>
               </div>
               <div class="col-lg-12">
                 <button type="submit" class="btn btn-primary">Submit</button>

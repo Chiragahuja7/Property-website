@@ -1,7 +1,7 @@
 <header class="main-header header-style-3 bg-dark">
             <div class="main-nav">
                 <div class="container">
-                    <div class="row">
+                    <div class="row pe-3">
                         <div class="col">
                             <nav class="navbar navbar-expand-lg nav-white nav-active-primary nav-hover-primary nav-line-active">
                                 <a class="navbar-brand" href="/"><img class="nav-logo" src="/assets/images/logo/logo-full-white.png" alt="real estate template"></a>
@@ -73,11 +73,11 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Contact Number</label>
-            <input type="number" class="form-control" name="contact" required>
+            <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" required>
           </div>
           <div class="mb-3">
             <label class="form-label">Location</label>
-            <select class="form-control text-dark" type="location" name="location" required>
+            <select class="form-select text-dark" type="location" name="location" required>
                  <option class="text-dark" value="">-- Select Location --</option>
                  <% mylocation.forEach(loc => { %>
                  <option class="text-dark">

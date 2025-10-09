@@ -226,8 +226,8 @@ app.post("/sell", async (req, res) => {
 
 app.post("/interested", async (req, res) => {
   try {
-    const { name, email, contact ,type ,location ,address} = req.body;
-    const newCall = new leads({ name, email, contact,type ,location,address });
+    const { name, email, contact ,type ,location ,address ,propId} = req.body;
+    const newCall = new leads({ name, email, contact,type ,location,address,propId });
     await newCall.save();
     res.json({ success: true, message: "Call scheduled!" });
   } catch (err) {
@@ -243,7 +243,7 @@ app.get('/admin',adminAuth ,async(req,res)=>{
 });
 
 app.get('/properties',adminAuth,async(req,res)=>{
-    const myproperties = await addproperties.find();
+    const myproperties = await addproperties.find().sort({ createdAt:-1});
     res.render("admin/properties",{
       myproperties,
       layout:adminLayout
@@ -356,7 +356,7 @@ app.get("/deleteproperty/:id", adminAuth, async (req, res) => {
 });
 
 app.get('/locations',adminAuth,async (req,res)=>{
-      const mylocation=await addlocation.find();
+      const mylocation=await addlocation.find().sort({ createdAt:-1});
     res.render("admin/location",{
          mylocation,
         layout:adminLayout
@@ -364,7 +364,7 @@ app.get('/locations',adminAuth,async (req,res)=>{
 });
 
 app.get('/agents',isAdminMiddleware,adminAuth,async(req,res)=>{
-    const myagents = await addagent.find();
+    const myagents = await addagent.find().sort({ createdAt:-1});
     res.render("admin/agent",{
       myagents,
       layout:adminLayout
@@ -379,7 +379,7 @@ app.get('/leads',adminAuth,(req,res)=>{
 
 app.get('/amenities',adminAuth, async (req, res) => {
     try {
-        const myamenities = await addamenities.find();
+        const myamenities = await addamenities.find().sort({ createdAt:-1});
         res.render('admin/amenities', { myamenities,
             layout:adminLayout
          });
@@ -432,7 +432,7 @@ app.get("/deleteamenities/:id", adminAuth, async (req, res) => {
 
 app.get('/banks',adminAuth,async (req,res)=>{
   try{
-    const mybanks=await addbank.find();
+    const mybanks=await addbank.find().sort({ createdAt:-1});
      res.render("admin/banks",{ mybanks,
         layout:adminLayout
     });
@@ -477,7 +477,7 @@ app.get('/customers', async (req, res) => {
 });
 
 app.get('/open-leads',adminAuth,async (req,res)=>{
-    const mycalls = await leads.find();
+    const mycalls = await leads.find().sort({ createdAt:-1});
     res.render("admin/open-leads",{
         layout:adminLayout,
         mycalls
@@ -530,7 +530,7 @@ app.post("/editagent/:id",adminAuth, async (req, res) => {
 });
 
 app.get('/closed-leads',adminAuth,async(req,res)=>{
-    const mycalls = await leads.find();
+    const mycalls = await leads.find().sort({ createdAt:-1});
     res.render("admin/closed-leads",{
         layout:adminLayout,
         mycalls
@@ -538,7 +538,7 @@ app.get('/closed-leads',adminAuth,async(req,res)=>{
 });
 
 app.get('/lost-leads',adminAuth,async(req,res)=>{
-    const mycalls = await leads.find();
+    const mycalls = await leads.find().sort({ createdAt:-1});
     res.render("admin/lost-leads",{
         layout:adminLayout,
         mycalls
@@ -919,7 +919,6 @@ app.post('/delete-image/:id', async (req, res) => {
 app.post('/compare', async (req, res) => {
   try {
     const { properties } = req.body;
-    await Compare.deleteMany();
     await Compare.create({ properties });
     res.json({ success: true });
   } catch (err) {

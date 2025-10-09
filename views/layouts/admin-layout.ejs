@@ -29,6 +29,10 @@
     line-height: 1.5;
     padding: 8px 10px;
 }
+  select.form-select {
+    line-height: 1.5;
+    padding: 8px 10px;
+}
 .offcanvas-start {
     width: 250px;
 }
@@ -49,11 +53,11 @@
     <div class="container-fluid">
         <div class="row">
 
-            <nav id="sidebar" class="col-lg-3 col-md-4 d-none d-md-block bg-light sidebar" style="padding-left: 0;">
+            <nav id="sidebar" class="col-lg-3 col-md-4 d-none d-md-block bg-light sidebar" style="padding-left: 0; padding-right: 0;">
                 <%- include('../partials/sidebar-admin') %>
             </nav>
 
-            <main id="main-content" class="col-lg-9 col-md-8 col-12 p-3">
+            <main id="main-content" class="col-lg-9 col-md-8 col-12 p-0" style="background-color:#f9f6f0">
                 <div class="d-md-none mb-3">
                      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
                        ☰ Menu
@@ -162,7 +166,19 @@ document.getElementById("searchForm").addEventListener("submit", function(e) {
       'hr', 'eraser', 'source'
     ]
   });
-</script>
 
+    const buildereditor = new Jodit('#builderdescription', {
+    height: 300,
+    toolbarAdaptive: false,
+    uploader: { insertImageAsBase64URI: true },
+    buttons: [
+      'bold', 'italic', 'underline', '|',
+      'ul', 'ol', '|',
+      'image', 'link', '|',
+      'undo', 'redo', '|',
+      'hr', 'eraser', 'source'
+    ]
+  });
+</script>
 </body>
 </html>

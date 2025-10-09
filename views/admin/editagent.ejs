@@ -12,21 +12,21 @@
 <div class="full-row pt-0">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-7">
+      <div class="col-lg-12">
         <div class="contact-form">
           <form  method="POST" id="editagent" action="/editagent/<%= agent._id %>">
             <div class="row align-items-center mb-3">
               <div class="col-lg-6">
                 <label class="mb-0 color-dark">Name of Agent</label>
-                <input type="text" class="form-control" name="agent" value="<%= agent.name %>"required>      
+                <input type="text" class="form-control text-dark" name="agent" value="<%= agent.name %>"required>      
               </div>
               <div class="col-lg-6">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" value="<%= agent.email %>" required>
+                <input type="email" class="form-control text-dark" name="email" value="<%= agent.email %>" required>
               </div>
               <div class="col-lg-6">
                 <label>location</label>
-                <select class="form-control text-dark" name="location" value="<%= agent.location %>" required>
+                <select class="form-select text-dark" name="location" value="<%= agent.location %>" required>
                  <option class="text-dark" value="">-- Select Location --</option>
                  <% mylocation.forEach(loc => { %>
                  <option class="text-dark" value="<%= loc.location %>" 
@@ -38,7 +38,7 @@
               </div>
               <div class="col-lg-6">
                 <label>Status</label>
-                <select class="form-control text-dark" name="status" required>
+                <select class="form-select text-dark" name="status" required>
                 <% if (mydata && mydata.default.AGENT_STATUS) { %>
                 <% mydata.default.AGENT_STATUS.forEach(function(status) { %>
                   <option class="text-dark" value="<%= status %>" <%= agent.status == status ? "selected" : "" %>>
@@ -48,9 +48,9 @@
                    <% } %>
               </select>
               </div>
-              <div class="col-lg-12">
+              <div class="col-lg-6">
                 <label>Phone No</label>
-                <input type="number" class="form-control" name="contact"  value="<%= agent.contact %>" required>
+                <input type="number" class="form-control text-dark" name="contact"  value="<%= agent.contact %>" required>
               </div>
               <div class="col-lg-12 mt-3">
                 <button type="submit" class="btn btn-primary">

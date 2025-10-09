@@ -43,6 +43,9 @@ const leads=new mongoose.Schema({
         type:String,
         enum:['open', 'closed', 'lost'],
         default: 'open'
+    },
+    propId:{
+        type:String
     }
 })
 module.exports=mongoose.model('leads',leads);
