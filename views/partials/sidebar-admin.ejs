@@ -26,7 +26,24 @@
             <li class="nav-item <%= currentPath.startsWith('/customers') ? 'active' : '' %>"><a class="nav-link" href="/customers"><i class="fa-solid fa-user"></i> Customers</a></li>
             
             <h5 class="dashboard-nav-title">Account Settings</h5>
-            <li class="nav-item"><a class="nav-link" href="/logout" onclick="return confirm('Are you sure you want to logout');"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
-        </ul>
-    </nav>
+<li class="nav-item">
+  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-3 rounded">
+      <div class="modal-body">
+        <h5 class="mb-3">Are you sure you want to logout?</h5>
+        <div class="d-flex justify-content-center gap-3">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

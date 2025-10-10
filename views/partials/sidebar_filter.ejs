@@ -35,9 +35,29 @@
 .offcanvas * {
   pointer-events: auto !important;
 }
+.sidebar { 
+  position: relative;
+ }
+
+.sidebar-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1050;
+  padding: 4px 8px;
+}
 </style>
 
-<form action="/browse" method="POST" class="quick-search slide-filter form-icon-right p-1">
+<button type="button" class="sidebar-close d-none d-md-block" aria-label="Close filter">&times;</button>
+
+<form action="/browse" method="GET" class="quick-search slide-filter form-icon-right p-1">
+  <% const sel = typeof selected !== 'undefined' ? selected : {}; %>
   <div class="row">
     <!-- Location -->
     <div class="col-12 mb-2">
@@ -48,7 +68,7 @@
         <select class="form-control text-dark" name="location">
           <option class="text-dark" value="">-- Select Location --</option>
           <% mylocation.forEach(loc => { %>
-            <option class="text-dark"><%= loc.location %></option>
+            <option class="text-dark" value="<%= loc.location %>" <%= (sel.location === loc.location) ? 'selected' : '' %>><%= loc.location %></option>
           <% }) %>
         </select>
         <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
@@ -62,23 +82,23 @@
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2 pl-1 pr-1">
         <li>
-          <input type="checkbox" value="House" name="propertyType[]" id="House">
+          <input type="checkbox" value="House" name="propertyType" id="House" <%= (Array.isArray(sel.propertyType) ? sel.propertyType.includes('House') : sel.propertyType === 'House') ? 'checked' : '' %>>
           <label for="House" class="select-btn">House</label>
         </li>
         <li>
-          <input type="checkbox" value="Office" name="propertyType[]" id="Office">
+          <input type="checkbox" value="Office" name="propertyType" id="Office" <%= (Array.isArray(sel.propertyType) ? sel.propertyType.includes('Office') : sel.propertyType === 'Office') ? 'checked' : '' %>>
           <label for="Office" class="select-btn">Office</label>
         </li>
         <li>
-          <input type="checkbox" value="Apartment" name="propertyType[]" id="Apartment">
+          <input type="checkbox" value="Apartment" name="propertyType" id="Apartment" <%= (Array.isArray(sel.propertyType) ? sel.propertyType.includes('Apartment') : sel.propertyType === 'Apartment') ? 'checked' : '' %>>
           <label for="Apartment" class="select-btn">Apartment</label>
         </li>
         <li>
-          <input type="checkbox" value="Land" name="propertyType[]" id="Land">
+          <input type="checkbox" value="Land" name="propertyType" id="Land" <%= (Array.isArray(sel.propertyType) ? sel.propertyType.includes('Land') : sel.propertyType === 'Land') ? 'checked' : '' %>>
           <label for="Land" class="select-btn">Land</label>
         </li>
         <li>
-          <input type="checkbox" value="Villa" name="propertyType[]" id="Villa">
+          <input type="checkbox" value="Villa" name="propertyType" id="Villa" <%= (Array.isArray(sel.propertyType) ? sel.propertyType.includes('Villa') : sel.propertyType === 'Villa') ? 'checked' : '' %>>
           <label for="Villa" class="select-btn">Villa</label>
         </li>
       </ul>
@@ -90,8 +110,8 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="checkbox" value="Sale" name="propertyStatus[]" id="Sale"><label for="Sale" class="select-btn">For Sale</label></li>
-        <li><input type="checkbox" value="Rent" name="propertyStatus[]" id="Rent"><label for="Rent" class="select-btn">For Rent</label></li>
+  <li><input type="checkbox" value="Sale" name="propertyStatus" id="Sale" <%= (Array.isArray(sel.propertyStatus) ? sel.propertyStatus.includes('Sale') : sel.propertyStatus === 'Sale') ? 'checked' : '' %>><label for="Sale" class="select-btn">For Sale</label></li>
+  <li><input type="checkbox" value="Rent" name="propertyStatus" id="Rent" <%= (Array.isArray(sel.propertyStatus) ? sel.propertyStatus.includes('Rent') : sel.propertyStatus === 'Rent') ? 'checked' : '' %>><label for="Rent" class="select-btn">For Rent</label></li>
       </ul>
     </div>
 
@@ -101,8 +121,8 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <div class="row g-2">
-        <div class="col"><input type="text" class="form-control" name="minprice" placeholder="Min Price"></div>
-        <div class="col"><input type="text" class="form-control" name="maxprice" placeholder="Max Price"></div>
+  <div class="col"><input type="text" class="form-control" name="minprice" placeholder="Min Price" value="<%= sel.minprice ? sel.minprice : '' %>"></div>
+  <div class="col"><input type="text" class="form-control" name="maxprice" placeholder="Max Price" value="<%= sel.maxprice ? sel.maxprice : '' %>"></div>
       </div>
     </div>
 
@@ -112,11 +132,11 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="checkbox" value="1bhk" name="additionalInfo[]" id="1Bhk" ><label for="1Bhk" class="select-btn">One</label></li>
-        <li><input type="checkbox" value="2bhk" name="additionalInfo[]" id="2Bhk"><label for="2Bhk" class="select-btn">Two</label></li>
-        <li><input type="checkbox" value="3bhk" name="additionalInfo[]" id="3Bhk" ><label for="3Bhk" class="select-btn">Three</label></li>
-        <li><input type="checkbox" value="4bhk" name="additionalInfo[]" id="4Bhk" ><label for="4Bhk" class="select-btn">Four</label></li>
-        <li><input type="checkbox" value="5bhk" name="additionalInfo[]" id="5Bhk" ><label for="5Bhk" class="select-btn">Five</label></li>
+  <li><input type="checkbox" value="1bhk" name="additionalInfo" id="1Bhk" <%= (Array.isArray(sel.additionalInfo) ? sel.additionalInfo.includes('1bhk') : sel.additionalInfo === '1bhk') ? 'checked' : '' %>><label for="1Bhk" class="select-btn">One</label></li>
+  <li><input type="checkbox" value="2bhk" name="additionalInfo" id="2Bhk" <%= (Array.isArray(sel.additionalInfo) ? sel.additionalInfo.includes('2bhk') : sel.additionalInfo === '2bhk') ? 'checked' : '' %>><label for="2Bhk" class="select-btn">Two</label></li>
+  <li><input type="checkbox" value="3bhk" name="additionalInfo" id="3Bhk" <%= (Array.isArray(sel.additionalInfo) ? sel.additionalInfo.includes('3bhk') : sel.additionalInfo === '3bhk') ? 'checked' : '' %>><label for="3Bhk" class="select-btn">Three</label></li>
+  <li><input type="checkbox" value="4bhk" name="additionalInfo" id="4Bhk" <%= (Array.isArray(sel.additionalInfo) ? sel.additionalInfo.includes('4bhk') : sel.additionalInfo === '4bhk') ? 'checked' : '' %>><label for="4Bhk" class="select-btn">Four</label></li>
+  <li><input type="checkbox" value="5bhk" name="additionalInfo" id="5Bhk" <%= (Array.isArray(sel.additionalInfo) ? sel.additionalInfo.includes('5bhk') : sel.additionalInfo === '5bhk') ? 'checked' : '' %>><label for="5Bhk" class="select-btn">Five</label></li>
       </ul>
     </div>
 
@@ -126,10 +146,10 @@
     </div>
     <div class="col-12 mb-3 p-0">
       <ul class="select-custom gap-2">
-        <li><input type="checkbox" value="0-1000" name="area[]" id="area-1"><label for="area-1" class="select-btn">0-1000</label></li>
-        <li><input type="checkbox" value="1001-3000" name="area[]" id="area-2"><label for="area-2" class="select-btn">1001-3000</label></li>
-        <li><input type="checkbox" value="3001-5000" name="area[]" id="area-3"><label for="area-3" class="select-btn">3001-5000</label></li>
-        <li><input type="checkbox" value="5001-8000+" name="area[]" id="area-4"><label for="area-4" class="select-btn">5001-8000+</label></li>
+  <li><input type="checkbox" value="0-1000" name="area" id="area-1" <%= (Array.isArray(sel.area) ? sel.area.includes('0-1000') : sel.area === '0-1000') ? 'checked' : '' %>><label for="area-1" class="select-btn">0-1000</label></li>
+  <li><input type="checkbox" value="1001-3000" name="area" id="area-2" <%= (Array.isArray(sel.area) ? sel.area.includes('1001-3000') : sel.area === '1001-3000') ? 'checked' : '' %>><label for="area-2" class="select-btn">1001-3000</label></li>
+  <li><input type="checkbox" value="3001-5000" name="area" id="area-3" <%= (Array.isArray(sel.area) ? sel.area.includes('3001-5000') : sel.area === '3001-5000') ? 'checked' : '' %>><label for="area-3" class="select-btn">3001-5000</label></li>
+  <li><input type="checkbox" value="5001-8000+" name="area" id="area-4" <%= (Array.isArray(sel.area) ? sel.area.includes('5001-8000+') : sel.area === '5001-8000+') ? 'checked' : '' %>><label for="area-4" class="select-btn">5001-8000+</label></li>
       </ul>
     </div>
 
@@ -142,8 +162,7 @@
         <% if (myamenities && myamenities.length > 0) { %>
           <% myamenities.forEach(function(amenity, index) { %>
             <li class="col">
-              <input type="checkbox" id="opt-<%= index + 1 %>" name="amenities" value="<%= amenity.amenities %>" class="visually-hidden"
-                <%= myproperties && myproperties.amenities && myproperties.amenities.includes(amenity.amenities) ? "checked" : "" %>>
+              <input type="checkbox" id="opt-<%= index + 1 %>" name="amenities" value="<%= amenity.amenities %>" class="visually-hidden" <%= (Array.isArray(sel.amenities) ? sel.amenities.includes(amenity.amenities) : sel.amenities === amenity.amenities) ? 'checked' : '' %>>
               <label for="opt-<%= index + 1 %>" class="select-btn"><%= amenity.amenities %></label>
             </li>
           <% }) %>

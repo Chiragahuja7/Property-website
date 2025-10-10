@@ -91,6 +91,10 @@ const addproperties=new mongoose.Schema({
         type:[String],
         default:[]
     },
+    nearbyPlacesKm:{
+        type:[String],
+        default:[]
+    },
     mainImage:{
         type:String
     }

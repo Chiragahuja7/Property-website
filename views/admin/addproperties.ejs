@@ -156,15 +156,38 @@
 
                 const data = await res.json();
                 if (data.success) {
-                  alert("Your request has been saved! ✅");
-                  window.location.href = "/properties"
-                  // this.reset();
+                  Toastify({
+                    text: "Property added successfully ✅",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#4CAF50",
+                    close: true,
+                  }).showToast();
+
+                  setTimeout(() => {
+                    window.location.href = "/properties";
+                  }, 1500);
                 } else {
-                  alert("Something went wrong ❌");
+                  Toastify({
+                    text: "Something went wrong ❌",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#FF5252",
+                    close: true,
+                  }).showToast();
                 }
               } catch (err) {
                 console.error(err);
-                alert("Server error!");
+                Toastify({
+                  text: "Server error! ⚠️",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#FFA000",
+                  close: true,
+                }).showToast();
               }
             });
           </script>

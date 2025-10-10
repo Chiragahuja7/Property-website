@@ -102,8 +102,8 @@ document.getElementById("scheduleCallForm").addEventListener("submit", async fun
     name: this.name.value,
     email: this.email.value,
     contact: this.contact.value,
-    type:this.type.value,
-    location:this.location.value
+    type: this.type.value,
+    location: this.location.value
   };
 
   try {
@@ -115,20 +115,42 @@ document.getElementById("scheduleCallForm").addEventListener("submit", async fun
 
     const data = await res.json();
     if (data.success) {
-      alert("Your request has been saved! ✅");
+      Toastify({
+        text: "Your request has been saved! ✅",
+        duration: 3000,
+        gravity: "top",
+        position: "center", 
+        backgroundColor: "#4CAF50",
+        close: true
+      }).showToast();
+
       this.reset();
-      var myModalEl = document.getElementById("scheduleCallModal");
-      var modal = bootstrap.Modal.getInstance(myModalEl);
-      if (!modal) modal = new bootstrap.Modal(myModalEl);
+
+      const myModalEl = document.getElementById("scheduleCallModal");
+      const modal = bootstrap.Modal.getInstance(myModalEl) || new bootstrap.Modal(myModalEl);
       document.activeElement.blur();
       modal.hide();
       document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
     } else {
-      alert("Something went wrong ❌");
+      Toastify({
+        text: "Something went wrong ❌",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "#FF5252",
+        close: true
+      }).showToast();
     }
   } catch (err) {
     console.error(err);
-    alert("model!");
+    Toastify({
+      text: "Server error! ⚠️",
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: "#FFA000",
+      close: true
+    }).showToast();
   }
 });
 </script>

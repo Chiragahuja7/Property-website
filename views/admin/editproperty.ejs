@@ -278,6 +278,7 @@
     <% property.nearbyPlaces.forEach(function(place, index) { %>
       <div class="col-md-6 d-flex gap-2">
         <input class="form-control" name="nearbyPlaces" value="<%= place %>">
+        <input class="form-control" name="nearbyPlacesKm" value="<%= property.nearbyPlacesKm && property.nearbyPlacesKm[index] ? property.nearbyPlacesKm[index] : '' %>">
         <button type="button" class="btn removePlace">❌</button>
       </div>
     <% }) %>
@@ -285,6 +286,7 @@
 
     <div class="col-md-6 d-flex gap-2">
       <input class="form-control" name="nearbyPlaces" value="">
+      <input class="form-control" name="nearbyPlacesKm" value="">
       <button type="button" class="btn removePlace">❌</button>
     </div>
   <% } %>
@@ -313,14 +315,37 @@ document.querySelectorAll(".editproperty").forEach(form => {
       });
       const data = await res.json();
       if (data.success) {
-        alert("Property updated! ✅");
-        window.location.href = "/properties";
+        Toastify({
+                    text: "Property Updated successfully ✅",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#4CAF50",
+                    close: true,
+                  }).showToast();
+
+                  setTimeout(() => {
+                    window.location.href = "/properties";
+                  }, 1500);
       } else {
-        alert("Something went wrong ❌");
-      }
+         Toastify({
+                    text: "Something went wrong ❌",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#FF5252",
+                    close: true,
+                  }).showToast();
+                }
     } catch (err) {
-      console.error(err);
-      alert("Server error!");
+      Toastify({
+                  text: "Server error! ⚠️",
+                  duration: 3000,
+                  gravity: "top",
+                  position: "right",
+                  backgroundColor: "#FFA000",
+                  close: true,
+                }).showToast();
     }
   });
 });
@@ -334,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
     div.className = "col-md-6 d-flex gap-2";
     div.innerHTML = `
       <input class="form-control" name="nearbyPlaces" value="">
+      <input class="form-control" name="nearbyPlacesKm" value="">
       <button type="button" class="btn btn-danger removePlace">❌</button>
     `;
     wrapper.appendChild(div);

@@ -19,6 +19,7 @@ const addproperties=require('./models/addproperty');
 const mydata=require("./models/utils");
 const leads = require('./models/leads');
 const Compare = require('./models/compare');
+const Toastify = require('toastify-js');
 
 app.use(expressLayouts);
 app.set('layout',"layouts/main");
@@ -35,7 +36,9 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage,
-  limits: { fileSize: 2 * 1024 * 1024 },
+  limits: { 
+    fieldSize: 10 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024 },
 });
 
 const dbURI = 'mongodb://127.0.0.1:27017/TEMPLATE';
@@ -103,36 +106,18 @@ app.get('/our-mission',(req,res)=>{
 
 app.get('/browse', async (req, res) => {
   try {
-    const mylocation=await addlocation.find();
-    const myamenities = await addamenities.find();
-    const myproperties = await addproperties.find();
-    res.render('browse', { myproperties,myamenities ,mylocation,layout:browseLayout});
-  } catch (err) {
-    console.error(err);
-    res.render('browse', { myproperties: [] });
-  }
-});
-
-app.post('/browse', async (req, res) => {
-  try {
-    const { location, propertyStatus, propertyType ,additionalInfo,amenities , minprice ,maxprice ,area} = req.body;
+    const { location, propertyStatus, propertyType, additionalInfo, amenities, minprice, maxprice, area } = req.query;
     let query = {};
+    console.log('Query received:', req.query);
 
-    if (location) {
-      query.location = location;
-    }
-    if (propertyStatus) {
-      query.propertyStatus = propertyStatus;
-    }
+    if (location) query.location = location;
+    if (propertyStatus) query.propertyStatus = propertyStatus;
     if (propertyType) {
       query.propertyType = propertyType;
     }
-    if (additionalInfo) {
-      query.additionalInfo = additionalInfo;
-    }
-    if (amenities) {
-      query.amenities = amenities;
-    }
+    if (additionalInfo) query.additionalInfo = additionalInfo;
+    if (amenities) query.amenities = amenities;
+
     if (minprice || maxprice) {
       query.priceFromInNumber = {};
       if (minprice) query.priceFromInNumber.$gte = Number(minprice);
@@ -147,25 +132,81 @@ app.post('/browse', async (req, res) => {
         const [min, max] = r.split('-').map(Number);
         return { areaSquareFeetFrom: { $gte: min, $lte: max } };
       });
-      query = { $and: [ query, { $or: areaConditions } ] };
+      query = { $and: [query, { $or: areaConditions }] };
     }
 
     const myproperties = await addproperties.find(query);
-    const mylocation = await addlocation.find(); 
+    const mylocation = await addlocation.find();
     const myamenities = await addamenities.find();
+
     console.log(query);
 
-    res.render('browse', {
+    res.render('browse', { 
       myproperties, 
-      myamenities,
-      mylocation,
-      layout: browseLayout 
+      myamenities, 
+      mylocation, 
+      layout: browseLayout,
+      selected: req.query
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false, message: "Error applying filter" });
+    res.render('browse', { myproperties: [], myamenities: [], mylocation: [], layout: browseLayout });
   }
 });
+
+// app.post('/browse', async (req, res) => {
+//   try {
+//     const { location, propertyStatus, propertyType ,additionalInfo,amenities , minprice ,maxprice ,area} = req.body;
+//     let query = {};
+
+//     if (location) {
+//       query.location = location;
+//     }
+//     if (propertyStatus) {
+//       query.propertyStatus = propertyStatus;
+//     }
+//     if (propertyType) {
+//       query.propertyType = propertyType;
+//     }
+//     if (additionalInfo) {
+//       query.additionalInfo = additionalInfo;
+//     }
+//     if (amenities) {
+//       query.amenities = amenities;
+//     }
+//     if (minprice || maxprice) {
+//       query.priceFromInNumber = {};
+//       if (minprice) query.priceFromInNumber.$gte = Number(minprice);
+//       if (maxprice) query.priceFromInNumber.$lte = Number(maxprice);
+//     }
+//     if (area) {
+//       const ranges = [].concat(area);
+//       const areaConditions = ranges.map(r => {
+//         if (r.includes('+')) {
+//           return { areaSquareFeetFrom: { $gte: parseInt(r) } };
+//         }
+//         const [min, max] = r.split('-').map(Number);
+//         return { areaSquareFeetFrom: { $gte: min, $lte: max } };
+//       });
+//       query = { $and: [ query, { $or: areaConditions } ] };
+//     }
+
+//     const myproperties = await addproperties.find(query);
+//     const mylocation = await addlocation.find(); 
+//     const myamenities = await addamenities.find();
+//     console.log(query);
+
+//     res.render('browse', {
+//       myproperties, 
+//       myamenities,
+//       mylocation,
+//       layout: browseLayout 
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ success: false, message: "Error applying filter" });
+//   }
+// });
 
 app.get('/career',(req,res)=>{
     res.render("career");
@@ -924,5 +965,22 @@ app.post('/compare', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.json({ success: false });
+  }
+});
+
+app.get('/download-customers', adminAuth, async (req, res)=>{
+  try {
+    
+    const myfiltercalls = await leads.find(filter).sort({ createdAt: -1 });
+    let csv = 'Name,Email,Contact,Message,Address,Type,Location,Property ID,Created At\n';
+    myfiltercalls.forEach(c => {
+      csv += `"${c.name}","${c.email}","${c.contact}","${c.message || ''}","${c.address || ''}","${c.type || ''}","${c.location || ''}","${c.propId || ''}","${c.createdAt.toISOString()}"\n`;
+    });
+    res.header('Content-Type', 'text/csv');
+    res.attachment('customers.csv');
+    return res.send(csv);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
   }
 });

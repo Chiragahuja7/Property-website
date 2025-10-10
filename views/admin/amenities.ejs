@@ -49,14 +49,30 @@
             <td><%= index + 1 %></td>
             <td><%= amenity.amenities %></td>
             <td class="d-flex gap-5 justify-content-center">
-                <a href="/editamenities/<%= amenity._id %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="/deleteamenities/<%= amenity._id %>" 
-                 onclick="return confirm('Are you sure you want to delete this amenity');">
-                <i class="fa-solid fa-trash text-danger"></i></a>
+                <a href="/editamenities/<%= amenity._id %>">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#amenitiesDeleteModal-<%= amenity._id %>">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
             </td>
         </tr>
+
+        <div class="modal fade" id="amenitiesDeleteModal-<%= amenity._id %>" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-3 rounded">
+              <div class="modal-body">
+                <h5 class="mb-3">Are you sure you want to Delete "<%= amenity.amenities %>"?</h5>
+                <div class="d-flex justify-content-center gap-3">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <a href="/deleteamenities/<%= amenity._id %>" class="btn btn-danger">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     <% }); %>
 </tbody>
-
 </table>
+</div>
 <%- include('../partials/pagination') %>

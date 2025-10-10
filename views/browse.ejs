@@ -28,11 +28,12 @@
     <div class="row mb-3">
         <div class="col">
             <div class="listing-filter-bar">
-                <div class="result-wrapper pt-1">
-                    <span class="ordering-pages ps-2 ms-1">Showing <%= myproperties.filter(p => p.listingStatus === "published").length %> results
-                    </span>
+                <div class="result-wrapper pt-1 ps-lg-5 ms-lg-3 ">
+                    <!-- <span class="ordering-pages ps-2 ms-1">Showing <%= myproperties.filter(p => p.listingStatus === "published").length %> results
+                    </span> -->
                 </div>
                 <div class="text-end mb-3">
+                <button id="desktopOpenFilter" class="btn btn-primary d-none" type="button">Filter</button>
                    <% if (myproperties.filter(p => p.listingStatus === "published").length > 0) { %>
                    <button id="toggleCompare" class="btn btn-primary me-2">Compare</button>
                    <% } %>
@@ -54,7 +55,7 @@
                   <div class="entry-thumbnail max-height-180px position-relative">
                     <div class="type position-absolute top-0 start-0 m-2">
                       <% if (property.propertyStatus === 'Sale') { %>
-                        <span class="badge bg-danger">For Sale</span>
+                        <span class="badge bg-success">For Sale</span>
                       <% } else { %>
                         <span class="badge bg-success">For Rent</span>
                       <% } %>
