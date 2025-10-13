@@ -518,7 +518,7 @@ app.get('/customers', async (req, res) => {
 });
 
 app.get('/open-leads',adminAuth,async (req,res)=>{
-    const mycalls = await leads.find().sort({ createdAt:-1});
+    const mycalls = await leads.find();
     res.render("admin/open-leads",{
         layout:adminLayout,
         mycalls
@@ -960,7 +960,13 @@ app.post('/delete-image/:id', async (req, res) => {
 app.post('/compare', async (req, res) => {
   try {
     const { properties } = req.body;
-    await Compare.create({ properties });
+    let compare = await Compare.findOne();
+    if (compare) {
+      compare.properties = properties;
+      await compare.save();
+    } else {
+      compare = await Compare.create({ properties });
+    }
     res.json({ success: true });
   } catch (err) {
     console.error(err);
